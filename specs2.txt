@@ -1,0 +1,76 @@
+# ComicVision Sorter Engineering Specification - Additional Spec for Bulk Upload Integration
+
+Version: 1.1  
+Date: November 15, 2025  
+Purpose: This document provides an additional specification for integrating bulk upload functionality with eBay, building on the original engineering specification. It focuses on enhancing the CSV export to generate eBay-compatible files for bulk listing via eBay's Seller Hub or Merchant Integration Platform (MIP). This approach simplifies listing by leveraging eBay's built-in tools instead of direct API integration. All previous specifications remain valid unless explicitly modified here.
+
+## Overview of Addition
+
+This addition extends the application's export capabilities to support eBay bulk uploads. The app will generate a CSV file formatted according to eBay's bulk listing templates, mapping extracted comic metadata to required eBay fields. This enables users to process images, build an inventory, add eBay-specific details, export the CSV, and upload it directly to eBay for batch listing. No direct API calls to eBay are required, reducing complexity, authentication needs, and potential errors.
+
+Key benefits:
+- Simpler implementation: Focus on data mapping and CSV generation.
+- User-friendly: Allows manual review/editing of the CSV before upload.
+- Compliance: Relies on eBay's validation during upload.
+- Scalability: Handles batches of comics efficiently.
+
+## Functional Requirements
+
+### CSV Export for eBay Bulk Format
+- Modify the "Export to CSV" functionality to include an option for eBay bulk format (e.g., via a checkbox in the export dialog or a separate "Export to eBay CSV" button).
+- When selected, generate a CSV using eBay's standard bulk listing template headers (e.g., Action(Add/Revise/Delete), ItemID, SKU, Title, Description, Category, Price, Quantity, Condition, PictureURL1, etc.).
+- Map ComicEntry fields to eBay columns:
+  - SKU: Auto-generate a unique identifier (e.g., title + "-" + issue + "-" + variant + "-" + unique hash or timestamp).
+  - Title: Concatenate extracted metadata (e.g., "title #issue - variant - publisher").
+  - Description: Auto-generate a detailed body (e.g., "This comic features: ocrRawText. Notable details: [extracted notable text]. Condition: [user-input]. Processed from original file: filename.").
+  - Category: Default to eBay's Comics category (e.g., 63 for Comics & Graphic Novels; allow user override via GUI).
+  - Price: Prompt user for input (default to empty or a configurable value).
+  - Quantity: Default to 1 (allow batch edit).
+  - Condition: Default to "3000" (Brand New; prompt for options like New/Used).
+  - PictureURL1: Include the full path or URL to the processedImagePath (user must upload images separately or host them; optionally integrate simple URL generation if images are uploaded to a service like Imgur).
+  - Other fields: UPC/ISBN (if extractable from OCR), Format (e.g., "FixedPrice"), Shipping options (default to user-configured values).
+- If metadata is "UNKNOWN", flag it in the CSV and prompt user for manual input during export.
+- Use Qt's QFile and QTextStream for writing the CSV, ensuring proper quoting and escaping for fields with commas or quotes.
+- Handle batch exports: Export all or selected inventory entries.
+
+### GUI Enhancements
+- In the right pane (metadata display):
+  - Add editable fields for eBay-specific details: Price, Quantity, Condition (dropdown: New, Like New, etc.), Category ID, Shipping Profile.
+  - These fields can be saved back to an extended ComicEntry struct.
+- Add a "Batch Edit eBay Details" dialog: Allow setting common values (e.g., price, condition) across multiple selected entries.
+- New optional button: "Prepare Images for eBay" – Generate a ZIP file of processed images or a list of URLs for bulk upload.
+- Status messages: After export, display "eBay CSV exported successfully. Upload to Seller Hub for listing."
+
+### File Management Additions
+- During export, optionally create a companion folder or ZIP with images referenced in the CSV's PictureURL fields.
+- Ensure paths in CSV are absolute or URLs (user-configured base URL for hosted images).
+
+## Data Structure Updates
+- Extend the ComicEntry struct:
+  std::string sku; // Auto-generated unique SKU
+  std::string eBayTitle; // Customized title for eBay
+  std::string eBayDescription; // Auto-generated description
+  std::string price; // User-input price
+  std::string quantity; // Default "1"
+  std::string condition; // eBay condition code (e.g., "3000")
+  std::string categoryId; // eBay category (e.g., "63")
+  std::string pictureUrl; // Path or URL to image
+
+## AI Parsing Logic Updates
+- Enhance post-OCR parsing to extract additional eBay-relevant fields if possible (e.g., UPC/ISBN from regex matches like "ISBN: \d+").
+- Fallback: Allow manual entry in GUI for missing fields.
+
+## Non-Functional Requirements
+- Performance: Export should handle up to 100 entries quickly (<10 seconds).
+- Compatibility: Ensure CSV is UTF-8 encoded for special characters in titles/descriptions.
+- Error Handling: Validate required eBay fields before export; warn user if incomplete.
+- Security: No changes needed, as no API keys or auth involved.
+- Usability: Provide a link or instructions in the app (e.g., tooltip) on how to upload to eBay Seller Hub.
+
+## Implementation Guidelines
+- Build on existing CSV export code.
+- Hardcode eBay template headers or load from a configurable file.
+- Testing: Generate sample CSV, upload to eBay Sandbox Seller Hub, verify listings create with comic details.
+- Documentation: Update README with instructions: "Export eBay CSV → Download template from eBay if needed → Upload via Seller Hub > Selling > Upload Inventory."
+
+This additional spec integrates seamlessly with the original. Proceed to implementation in subsequent stages, or refine as needed.
