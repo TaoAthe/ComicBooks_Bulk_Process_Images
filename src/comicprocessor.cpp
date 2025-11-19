@@ -2,6 +2,7 @@
 #include <QDir>
 #include <QFile>
 #include <QImage>
+#include <QImageReader>
 #include <QByteArray>
 #include <QBuffer>
 #include <QJsonDocument>
@@ -11,19 +12,57 @@
 #include <QUrlQuery>
 #include <QDebug>
 #include <QSqlError>
+#include <QMessageBox>
+#include <QUuid>
+#include <QProcess>
+#include <QTemporaryFile>
 
 ComicProcessor::ComicProcessor(QObject *parent) : QObject(parent) {
     networkManager = new QNetworkAccessManager(this);
-    server = Ollama; // default
-    model = "llava"; // default
+    server = LMStudio; // default
+    model = ""; // default
+
+    // Ensure directories exist
+    QDir().mkpath(QCoreApplication::applicationDirPath() + "/images");
+    QDir().mkpath(QCoreApplication::applicationDirPath() + "/processed");
 
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(QCoreApplication::applicationDirPath() + "/comicvision.db");
     if (!db.open()) {
         qDebug() << "Failed to open database";
     } else {
-        QSqlQuery query;
-        query.exec("CREATE TABLE IF NOT EXISTS processed_images (id INTEGER PRIMARY KEY AUTOINCREMENT, image_path TEXT, metadata TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)");
+        QSqlQuery query(db);
+        query.exec("CREATE TABLE IF NOT EXISTS comics (id INTEGER PRIMARY KEY AUTOINCREMENT, image_path TEXT, image_data BLOB, action TEXT, category TEXT, title TEXT, issue TEXT, publisher TEXT, year TEXT, genre TEXT, main_characters TEXT, condition TEXT, value TEXT, notes TEXT)");
+        qDebug() << "Create table error:" << query.lastError().text();
+        // Check if image_data column exists, if not, add it
+        query.exec("PRAGMA table_info(comics)");
+        bool hasImageData = false;
+        while (query.next()) {
+            if (query.value(1).toString() == "image_data") {
+                hasImageData = true;
+                break;
+            }
+        }
+        if (!hasImageData) {
+            query.exec("ALTER TABLE comics ADD COLUMN image_data BLOB");
+            qDebug() << "Added image_data column";
+        }
+    }
+}
+
+ComicProcessor::~ComicProcessor() {
+    // Abort all pending network requests
+    QList<QNetworkReply*> replies = findChildren<QNetworkReply*>();
+    for (QNetworkReply *reply : replies) {
+        reply->abort();
+    }
+    if (db.isOpen()) db.close();
+}
+
+void ComicProcessor::abortRequests() {
+    if (networkManager) {
+        networkManager->deleteLater();
+        networkManager = nullptr;
     }
 }
 
@@ -37,12 +76,28 @@ QString ComicProcessor::getServerUrl() const {
 
 QStringList ComicProcessor::scanImagesDirectory() {
     QDir dir(QCoreApplication::applicationDirPath() + "/images");
-    QStringList filters = {"*.jpg", "*.jpeg", "*.png", "*.webp"};
-    return dir.entryList(filters, QDir::Files);
+    QByteArrayList supportedFormats = QImageReader::supportedImageFormats();
+    QStringList filters;
+    for (const QByteArray &format : supportedFormats) {
+        filters << "*." + QString(format);
+    }
+    // Add webp even if not supported, since we handle it specially
+    if (!supportedFormats.contains("webp")) {
+        filters << "*.webp";
+    }
+    QStringList files = dir.entryList(filters, QDir::Files);
+    QStringList validFiles;
+    for (const QString &file : files) {
+        QFileInfo fi(dir.absoluteFilePath(file));
+        if (fi.exists() && fi.isFile()) {
+            validFiles << fi.absoluteFilePath();
+        }
+    }
+    return validFiles;
 }
 
 void ComicProcessor::processImage(const QString &imagePath, std::function<void(const QString&)> callback) {
-    QString fullPath = QCoreApplication::applicationDirPath() + "/images/" + imagePath;
+    QString fullPath = imagePath; // imagePath is already full path from scanImagesDirectory
     QString base64 = base64EncodeImage(fullPath);
     if (base64.startsWith("Failed to load")) {
         callback(base64);
@@ -50,17 +105,38 @@ void ComicProcessor::processImage(const QString &imagePath, std::function<void(c
     }
     sendToAI(base64, [this, fullPath, callback](const QString& response) {
         callback(response);
-        moveToProcessed(fullPath);
-        saveToDB(fullPath, response);
+        ComicEntry entry = parseResponse(response);
+        entry.imagePath = fullPath;
+        entry.picture_url = fullPath;
+        saveToDB(entry);
+        if (!response.startsWith("Error")) {
+            moveToProcessed(fullPath);
+        }
     });
 }
 
 QString ComicProcessor::base64EncodeImage(const QString &imagePath) {
     qDebug() << "Loading image:" << imagePath;
-    QImageReader reader(imagePath);
-    QImage image = reader.read();
-    if (image.isNull()) {
-        QString errorMsg = "Failed to load image: " + imagePath + ". QImageReader error: " + reader.errorString();
+    // Check if it's WebP
+    QFile file(imagePath);
+    if (file.open(QIODevice::ReadOnly)) {
+        QByteArray header = file.read(12);
+        file.close();
+        if (header.startsWith("RIFF") && header.mid(8, 4) == "WEBP") {
+            // For WebP, return raw base64 with prefix
+            if (file.open(QIODevice::ReadOnly)) {
+                QByteArray data = file.readAll();
+                file.close();
+                return "WEBP:" + data.toBase64();
+            }
+        }
+    }
+    // For other formats, load and convert to PNG
+    QImage image;
+    bool loaded = image.load(imagePath);
+    if (!loaded) {
+        // Try loading as WebP if it looks like WebP (already checked above)
+        QString errorMsg = "Failed to load image: " + imagePath + ". QImage error: Image is null";
         qDebug() << errorMsg;
         qDebug() << "File exists:" << QFile::exists(imagePath);
         qDebug() << "File size:" << QFileInfo(imagePath).size();
@@ -72,7 +148,7 @@ QString ComicProcessor::base64EncodeImage(const QString &imagePath) {
         } else {
             qDebug() << "Cannot open file for reading.";
         }
-        return errorMsg;  // Return the error message instead of empty string
+        return errorMsg;
     }
 
     QByteArray byteArray;
@@ -87,9 +163,11 @@ void ComicProcessor::sendToAI(const QString &base64Image, std::function<void(con
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
+    QString templateStr = R"(<html><body><h2>Comic Book Details</h2><p><strong>Title:</strong> [title]</p><p><strong>Issue:</strong> [issue]</p><p><strong>Publisher:</strong> [publisher]</p><p><strong>Year:</strong> [year]</p><p><strong>Genre:</strong> [genre]</p><p><strong>Main Characters:</strong> [characters]</p><p><strong>Condition:</strong> [condition]</p><p><strong>Value:</strong> [value]</p><p><strong>Notes:</strong> [notes]</p></body></html>)";
+
     QJsonObject json;
     json["model"] = model;
-    QString prompt = "Analyze this comic book cover. Extract: title, issue number, variant, publisher, and any notable text.";
+    QString prompt = "Analyze this comic book cover. Create an eBay listing title (max 80 characters) with key book info. Extract: issue number, variant, publisher, condition, value. Generate detailed notes as an HTML template with the extracted info filled in. Use this template for notes:\n\n" + templateStr + "\n\nOutput in format: Title: [title]\nIssue: [issue]\nVariant: [variant]\nPublisher: [publisher]\nCondition: [condition]\nValue: [value]\nNotes: [html notes]";
     if (!customPrompt.isEmpty()) {
         prompt += " " + customPrompt;
     }
@@ -97,7 +175,8 @@ void ComicProcessor::sendToAI(const QString &base64Image, std::function<void(con
     if (server == Ollama) {
         json["prompt"] = prompt;
         QJsonArray imagesArray;
-        imagesArray.append(base64Image);
+        QString actualBase64 = base64Image.startsWith("WEBP:") ? base64Image.mid(5) : base64Image;
+        imagesArray.append(actualBase64);
         json["images"] = imagesArray;
         json["stream"] = false;
     } else { // LMStudio
@@ -112,7 +191,9 @@ void ComicProcessor::sendToAI(const QString &base64Image, std::function<void(con
         QJsonObject imagePart;
         imagePart["type"] = "image_url";
         QJsonObject imageUrl;
-        imageUrl["url"] = "data:image/png;base64," + base64Image;
+        QString mime = base64Image.startsWith("WEBP:") ? "data:image/webp;base64," : "data:image/png;base64,";
+        QString actualBase64 = base64Image.startsWith("WEBP:") ? base64Image.mid(5) : base64Image;
+        imageUrl["url"] = mime + actualBase64;
         imagePart["image_url"] = imageUrl;
         content.append(imagePart);
         message["content"] = content;
@@ -156,6 +237,9 @@ void ComicProcessor::sendToAI(const QString &base64Image, std::function<void(con
 }
 
 void ComicProcessor::moveToProcessed(const QString &imagePath) {
+    if (!QFile::exists(imagePath)) {
+        return; // Already moved or doesn't exist
+    }
     QFile file(imagePath);
     QString newPath = QCoreApplication::applicationDirPath() + "/processed/" + QFileInfo(imagePath).fileName();
     if (!file.rename(newPath)) {
@@ -217,7 +301,7 @@ void ComicProcessor::filterVisionModels(const QStringList &allModels, std::funct
         // For LM Studio, filter by name
         QStringList visionModels;
         for (const QString &model : allModels) {
-            if (model.contains("vision", Qt::CaseInsensitive) || model.contains("gpt-4", Qt::CaseInsensitive) || model.contains("vl", Qt::CaseInsensitive)) {
+            if (model.contains("vision", Qt::CaseInsensitive) || model.contains("gpt-4", Qt::CaseInsensitive) || model.contains("vl", Qt::CaseInsensitive) || model.contains("qwen", Qt::CaseInsensitive)) {
                 visionModels << model;
             }
         }
@@ -272,4 +356,112 @@ void ComicProcessor::saveToDB(const QString &imagePath, const QString &metadata)
     if (!query.exec()) {
         qDebug() << "DB insert failed:" << query.lastError();
     }
+}
+
+void ComicProcessor::saveToDB(const ComicEntry &entry) {
+    if (!QFile::exists(entry.imagePath)) {
+        QMessageBox::warning(nullptr, "File Not Found", "Image file not found: " + entry.imagePath);
+        return;
+    }
+    QSqlQuery query(db);
+    if (!query.prepare("INSERT INTO comics (image_path, image_data, action, category, title, issue, publisher, year, genre, main_characters, condition, value, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+        qDebug() << "Prepare failed:" << query.lastError();
+        return;
+    }
+    query.addBindValue(entry.imagePath);
+    // Read original image data to preserve resolution and format
+    QFile file(entry.imagePath);
+    QByteArray imageData;
+    if (file.open(QIODevice::ReadOnly)) {
+        imageData = file.readAll();
+        file.close();
+        qDebug() << "Original image data size:" << imageData.size();
+    } else {
+        QMessageBox::warning(nullptr, "File Error", "Failed to open image file: " + entry.imagePath);
+        return;
+    }
+    query.addBindValue(imageData);
+    query.addBindValue(entry.action);
+    query.addBindValue(entry.category);
+    query.addBindValue(entry.title);
+    query.addBindValue(entry.issueNumber);
+    query.addBindValue(entry.publisher);
+    query.addBindValue(entry.publicationYear);
+    query.addBindValue(entry.genre);
+    query.addBindValue(entry.mainCharacters);
+    query.addBindValue(entry.conditionID);
+    query.addBindValue(entry.value);
+    query.addBindValue(entry.notes);
+    if (!query.exec()) {
+        qDebug() << "Exec failed:" << query.lastError();
+    } else {
+        qDebug() << "DB insert success for" << entry.imagePath;
+    }
+}
+
+ComicEntry ComicProcessor::parseResponse(const QString &response) {
+    ComicEntry entry;
+    entry.metadata = response;
+
+    QStringList lines = response.split('\n', Qt::SkipEmptyParts);
+    for (const QString &line : lines) {
+        if (line.startsWith("Title:", Qt::CaseInsensitive)) {
+            entry.title = line.mid(6).trimmed();
+        } else if (line.startsWith("Issue:", Qt::CaseInsensitive)) {
+            entry.issueNumber = line.mid(6).trimmed();
+        } else if (line.startsWith("Variant:", Qt::CaseInsensitive)) {
+            QString variant = line.mid(8).trimmed();
+            if (!variant.isEmpty() && !entry.issueNumber.isEmpty()) {
+                entry.issueNumber += " " + variant;
+            }
+        } else if (line.startsWith("Publisher:", Qt::CaseInsensitive)) {
+            entry.publisher = line.mid(10).trimmed();
+        } else if (line.startsWith("Condition:", Qt::CaseInsensitive)) {
+            entry.conditionID = line.mid(10).trimmed();
+            entry.condition = entry.conditionID;
+        } else if (line.startsWith("Value:", Qt::CaseInsensitive)) {
+            entry.value = line.mid(6).trimmed();
+        } else if (line.startsWith("Notes:", Qt::CaseInsensitive)) {
+            entry.notes = line.mid(6).trimmed();
+        }
+    }
+
+    // Set defaults if not found
+    if (entry.title.isEmpty()) entry.title = "Unknown";
+    if (entry.issueNumber.isEmpty()) entry.issueNumber = "Unknown";
+    if (entry.publisher.isEmpty()) entry.publisher = "Unknown";
+    if (entry.publicationYear.isEmpty()) entry.publicationYear = "Unknown";
+    if (entry.genre.isEmpty()) entry.genre = "Superheroes";
+    if (entry.conditionID.isEmpty()) entry.conditionID = "3000";
+    if (entry.value.isEmpty()) entry.value = "";
+    if (entry.notes.isEmpty()) entry.notes = response; // fallback
+
+    // Series - assume title
+    entry.series = entry.title;
+
+    // Main Characters - not extracted
+    entry.mainCharacters = "";
+
+    // SKU
+    entry.sku = QUuid::createUuid().toString();
+
+    // eBay Title - use the AI generated title
+    entry.ebay_title = entry.title;
+
+    // eBay Description - use notes
+    entry.ebay_description = entry.notes;
+
+    // Price - leave empty
+    entry.price = "";
+
+    // Quantity
+    entry.quantity = "1";
+
+    // Category ID
+    entry.category_id = "63";
+
+    // Picture URL
+    entry.picture_url = "";
+
+    return entry;
 }

@@ -15,6 +15,8 @@ add_executable(ComicVisionSorterStage1
     src/mainwindow.h
     src/comicprocessor.cpp
     src/comicprocessor.h
+    src/imageviewerwidget.cpp
+    src/imageviewerwidget.h
 )
 
 target_link_libraries(ComicVisionSorterStage1 PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Sql)

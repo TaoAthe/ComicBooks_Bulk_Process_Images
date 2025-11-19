@@ -4,9 +4,12 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QLabel>
-#include <QVBoxLayout>
 #include <QComboBox>
 #include <QTextEdit>
+#include <QCheckBox>
+#include <QTableWidget>
+#include <QTabWidget>
+#include <QSqlDatabase>
 
 class ComicProcessor;
 
@@ -17,20 +20,35 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
 private slots:
     void onProcessImages();
     void onServerChanged(int index);
     void onModelChanged(int index);
+    void onCellChanged(int row, int column);
+    void closeTab(int index);
+    void viewImage(int id);
+    void onPause();
 
 private:
+    void loadData();
+    void processNext();
     QPushButton *processButton;
-    QLabel *statusLabel;
+    QPushButton *pauseButton;
     QComboBox *serverCombo;
     QComboBox *modelCombo;
     QLabel *modelInfoLabel;
     QLabel *modelStatusLabel;
     QTextEdit *customPromptEdit;
+    QCheckBox *ebayCheckBox;
+    QTableWidget *table;
+    QTabWidget *tabWidget;
     ComicProcessor *processor;
+    QSqlDatabase db;
+    QStringList pendingImages;
+    bool paused;
 };
 
 #endif // MAINWINDOW_H
