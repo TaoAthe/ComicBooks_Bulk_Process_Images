@@ -1,0 +1,3 @@
+[submodule "comicvision-sorter-stage1"]
+	path = comicvision-sorter-stage1
+	url = https://github.com/TaoAthe/ComicBooks_Bulk_Process_Images.git
