@@ -85,6 +85,8 @@ void ComicProcessor::abortRequests() {
 QString ComicProcessor::getServerUrl() const {
     if (server == Ollama) {
         return "http://localhost:11434";
+    } else if (server == Gemini) {
+        return "https://generativelanguage.googleapis.com/v1beta/openai";
     } else {
         return "http://localhost:1234";
     }
@@ -180,6 +182,11 @@ void ComicProcessor::sendToAI(const QString &base64Image, std::function<void(con
     // LM Studio's local server doesn't support HTTP/2 multiplexing.
     // Force HTTP/1.1 to avoid "unknown channel" warnings.
     request.setAttribute(QNetworkRequest::Http2AllowedAttribute, false);
+    // Gemini requires a Bearer token; injected per-request so it is never stored.
+    if (server == Gemini && !m_apiKey.isEmpty()) {
+        request.setRawHeader("Authorization",
+            QStringLiteral("Bearer %1").arg(m_apiKey).toUtf8());
+    }
 
     QJsonObject json;
     json["model"] = model;
@@ -307,10 +314,18 @@ void ComicProcessor::setCustomPrompt(const QString &p) {
     customPrompt = p;
 }
 
+void ComicProcessor::setApiKey(const QString &key) {
+    m_apiKey = key;
+}
+
 void ComicProcessor::fetchModels(std::function<void(const QStringList&)> callback) {
     QString endpoint = (server == Ollama) ? "/api/tags" : "/v1/models";
     QUrl url(getServerUrl() + endpoint);
     QNetworkRequest request(url);
+    if ((server == Gemini) && !m_apiKey.isEmpty()) {
+        request.setRawHeader("Authorization",
+            QStringLiteral("Bearer %1").arg(m_apiKey).toUtf8());
+    }
 
     QNetworkReply *reply = networkManager->get(request);
     connect(reply, &QNetworkReply::finished, [reply, callback, this]() {
@@ -342,7 +357,18 @@ void ComicProcessor::fetchModels(std::function<void(const QStringList&)> callbac
 }
 
 void ComicProcessor::filterVisionModels(const QStringList &allModels, std::function<void(const QStringList&)> callback) {
-    // Return all models for both servers — let the user pick the right one.
+    // For Gemini, only surface models that contain "gemini" in their id.
+    if (server == Gemini) {
+        QStringList filtered;
+        for (const QString &m : allModels) {
+            if (m.contains(QLatin1String("gemini"), Qt::CaseInsensitive)) {
+                filtered << m;
+            }
+        }
+        callback(filtered.isEmpty() ? allModels : filtered);
+        return;
+    }
+    // Return all models for local servers — let the user pick.
     callback(allModels);
 }
 

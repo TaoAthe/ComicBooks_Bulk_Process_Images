@@ -184,11 +184,13 @@ void ApiServer::handleGet(QTcpSocket *socket, const QString &path, const QUrlQue
     }
     if (path == "/api/models") {
         QString server = query.queryItemValue("server");
-        ComicProcessor::ServerType type = server.compare("Ollama", Qt::CaseInsensitive) == 0
-                                             ? ComicProcessor::Ollama
-                                             : ComicProcessor::LMStudio;
+        QString apiKey = query.queryItemValue("apiKey", QUrl::FullyDecoded);
+        ComicProcessor::ServerType type =
+            server.compare("Ollama",  Qt::CaseInsensitive) == 0 ? ComicProcessor::Ollama
+          : server.compare("Gemini",  Qt::CaseInsensitive) == 0 ? ComicProcessor::Gemini
+          : ComicProcessor::LMStudio;
         QPointer<QTcpSocket> weakSocket(socket);
-        m_backend->requestModels(type, [this, weakSocket](const QStringList &models) {
+        m_backend->requestModels(type, apiKey, [this, weakSocket](const QStringList &models) {
             if (!weakSocket) {
                 return;
             }
@@ -246,11 +248,13 @@ void ApiServer::handlePost(QTcpSocket *socket, const QString &path, const QByteA
         QJsonObject obj = doc.object();
         QString server = obj.value("server").toString("LMStudio");
         QString model = obj.value("model").toString();
+        QString apiKey = obj.value("apiKey").toString();
         bool generateEbay = obj.value("generateEbay").toBool(false);
-        ComicProcessor::ServerType type = server.compare("Ollama", Qt::CaseInsensitive) == 0
-                                              ? ComicProcessor::Ollama
-                                              : ComicProcessor::LMStudio;
-        m_backend->configureProcessing(type, model, generateEbay);
+        ComicProcessor::ServerType type =
+            server.compare("Ollama",  Qt::CaseInsensitive) == 0 ? ComicProcessor::Ollama
+          : server.compare("Gemini",  Qt::CaseInsensitive) == 0 ? ComicProcessor::Gemini
+          : ComicProcessor::LMStudio;
+        m_backend->configureProcessing(type, model, generateEbay, apiKey);
         m_backend->startProcessing();
         respondJson(socket, m_backend->status());
         return;

@@ -42,7 +42,7 @@ class ComicProcessor : public QObject {
     Q_OBJECT
 
 public:
-    enum ServerType { Ollama, LMStudio };
+    enum ServerType { Ollama, LMStudio, Gemini };
 
     explicit ComicProcessor(QObject *parent = nullptr);
     ~ComicProcessor();
@@ -51,6 +51,7 @@ public:
     void setServer(ServerType s);
     void setModel(const QString &m);
     void setCustomPrompt(const QString &p);
+    void setApiKey(const QString &key);
     void fetchModels(std::function<void(const QStringList&)> callback);
     void fetchModelInfo(const QString &model, std::function<void(const QString&)> callback);
     void saveToDB(const QString &imagePath, const QString &metadata);
@@ -62,6 +63,7 @@ private:
     ServerType server;
     QString model;
     QString customPrompt;
+    QString m_apiKey;
     QSqlDatabase db;
     QSqlDatabase gcdDb;
     QString base64EncodeImage(const QString &imagePath);

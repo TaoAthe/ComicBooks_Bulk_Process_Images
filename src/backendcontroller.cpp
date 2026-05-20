@@ -271,7 +271,9 @@ QJsonObject BackendController::status() const {
     json["queueLength"] = static_cast<int>(m_activeQueue.size());
     json["pendingLength"] = m_pendingQueue.size();
     json["currentItem"] = m_currentItem;
-    json["server"] = m_serverType == ComicProcessor::Ollama ? "Ollama" : "LMStudio";
+    json["server"] = m_serverType == ComicProcessor::Ollama ? "Ollama"
+                    : m_serverType == ComicProcessor::Gemini ? "Gemini"
+                    : "LMStudio";
     json["model"] = m_modelName;
     json["generateEbay"] = m_generateEbay;
     return json;
@@ -418,23 +420,32 @@ QByteArray BackendController::imageById(int id, QString &mimeType) const {
 
 void BackendController::configureProcessing(ComicProcessor::ServerType serverType,
                                             const QString &modelName,
-                                            bool generateEbayListing) {
+                                            bool generateEbayListing,
+                                            const QString &apiKey) {
     m_serverType = serverType;
     m_modelName = modelName;
     m_generateEbay = generateEbayListing;
+    m_apiKey = apiKey;
     m_processor->setServer(serverType);
     m_processor->setModel(modelName);
+    m_processor->setApiKey(apiKey);
 }
 
 void BackendController::requestModels(ComicProcessor::ServerType serverType,
+                                      const QString &apiKey,
                                       std::function<void(QStringList)> callback) {
-    if (m_cachedModels.contains(static_cast<int>(serverType))) {
+    // Don't use the cache for Gemini since the key may change between calls.
+    if (serverType != ComicProcessor::Gemini &&
+        m_cachedModels.contains(static_cast<int>(serverType))) {
         callback(m_cachedModels.value(static_cast<int>(serverType)));
         return;
     }
     m_processor->setServer(serverType);
+    m_processor->setApiKey(apiKey);
     m_processor->fetchModels([this, serverType, callback](const QStringList &models) {
-        m_cachedModels.insert(static_cast<int>(serverType), models);
+        if (serverType != ComicProcessor::Gemini) {
+            m_cachedModels.insert(static_cast<int>(serverType), models);
+        }
         callback(models);
     });
 }
