@@ -198,9 +198,18 @@ bool BackendController::addToQueue(const QStringList &paths, QStringList &errors
             errors.append(QStringLiteral("File not found: %1").arg(path));
             continue;
         }
-        if (!info.absoluteFilePath().startsWith(m_rootPath)) {
-            errors.append(QStringLiteral("Path outside workspace: %1").arg(path));
-            continue;
+        // If the file lives outside the current root, expand the root to the
+        // drive root so the browser can still navigate there.
+        QString absPath = info.absoluteFilePath();
+#ifdef Q_OS_WIN
+        if (QDir::cleanPath(absPath).toLower().startsWith(QDir::cleanPath(m_rootPath).toLower()) == false) {
+#else
+        if (!absPath.startsWith(m_rootPath)) {
+#endif
+            QString newRoot = deriveRootForPath(absPath);
+            if (!newRoot.isEmpty()) {
+                m_rootPath = QDir::cleanPath(newRoot);
+            }
         }
         if (!isSupportedImage(path)) {
             errors.append(QStringLiteral("Unsupported image format: %1").arg(path));

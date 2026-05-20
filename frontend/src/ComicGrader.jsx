@@ -64,6 +64,7 @@ export default function ComicGrader() {
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
   const [expandedResultId, setExpandedResultId] = useState(null);
+  const [generateEbay, setGenerateEbay] = useState(false);
 
   const refreshContext = async () => {
     const data = await fetchJson('/api/context');
@@ -185,7 +186,7 @@ export default function ComicGrader() {
       setError(null);
       await fetchJson('/api/process', {
         method: 'POST',
-        body: JSON.stringify({ server, model: selectedModel, generateEbay: false })
+        body: JSON.stringify({ server, model: selectedModel, generateEbay })
       });
       await Promise.all([refreshStatus(), refreshQueue(), refreshResults()]);
     } catch (err) {
@@ -396,6 +397,15 @@ export default function ComicGrader() {
                 <span>Queue length: {status.queueLength ?? 0}</span>
               </div>
             </div>
+            <label className="flex items-center gap-3 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                className="w-4 h-4 accent-indigo-500"
+                checked={generateEbay}
+                onChange={(e) => setGenerateEbay(e.target.checked)}
+              />
+              <span className="text-sm text-slate-300">Generate eBay listing title &amp; description</span>
+            </label>
           </div>
         </section>
 
