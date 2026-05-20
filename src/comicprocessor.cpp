@@ -182,10 +182,12 @@ void ComicProcessor::sendToAI(const QString &base64Image, std::function<void(con
     // LM Studio's local server doesn't support HTTP/2 multiplexing.
     // Force HTTP/1.1 to avoid "unknown channel" warnings.
     request.setAttribute(QNetworkRequest::Http2AllowedAttribute, false);
-    // Gemini requires a Bearer token; injected per-request so it is never stored.
-    if (server == Gemini && !m_apiKey.isEmpty()) {
-        request.setRawHeader("Authorization",
-            QStringLiteral("Bearer %1").arg(m_apiKey).toUtf8());
+    // Gemini requires a Bearer token read from the GEMINI_API_KEY environment variable.
+    if (server == Gemini) {
+        const QByteArray key = qgetenv("GEMINI_API_KEY");
+        if (!key.isEmpty()) {
+            request.setRawHeader("Authorization", "Bearer " + key);
+        }
     }
 
     QJsonObject json;
@@ -314,17 +316,15 @@ void ComicProcessor::setCustomPrompt(const QString &p) {
     customPrompt = p;
 }
 
-void ComicProcessor::setApiKey(const QString &key) {
-    m_apiKey = key;
-}
-
 void ComicProcessor::fetchModels(std::function<void(const QStringList&)> callback) {
     QString endpoint = (server == Ollama) ? "/api/tags" : "/v1/models";
     QUrl url(getServerUrl() + endpoint);
     QNetworkRequest request(url);
-    if ((server == Gemini) && !m_apiKey.isEmpty()) {
-        request.setRawHeader("Authorization",
-            QStringLiteral("Bearer %1").arg(m_apiKey).toUtf8());
+    if ((server == Gemini)) {
+        const QByteArray key = qgetenv("GEMINI_API_KEY");
+        if (!key.isEmpty()) {
+            request.setRawHeader("Authorization", "Bearer " + key);
+        }
     }
 
     QNetworkReply *reply = networkManager->get(request);

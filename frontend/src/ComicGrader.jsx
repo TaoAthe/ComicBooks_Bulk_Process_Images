@@ -66,7 +66,6 @@ export default function ComicGrader() {
   const [error, setError] = useState(null);
   const [expandedResultId, setExpandedResultId] = useState(null);
   const [generateEbay, setGenerateEbay] = useState(false);
-  const [apiKey, setApiKey] = useState('');
 
   const refreshContext = async () => {
     const data = await fetchJson('/api/context');
@@ -102,14 +101,10 @@ export default function ComicGrader() {
     setResults(data || []);
   };
 
-  const refreshModels = async (nextServer, nextApiKey = apiKey) => {
+  const refreshModels = async (nextServer) => {
     setLoadingModels(true);
     try {
-      const params = new URLSearchParams({ server: nextServer });
-      if (nextServer === 'Gemini' && nextApiKey) {
-        params.set('apiKey', nextApiKey);
-      }
-      const list = await fetchJson(`/api/models?${params}`);
+      const list = await fetchJson(`/api/models?server=${encodeURIComponent(nextServer)}`);
       setModels(list || []);
       setSelectedModel((current) => {
         if (current && list?.includes(current)) {
@@ -192,12 +187,7 @@ export default function ComicGrader() {
       setError(null);
       await fetchJson('/api/process', {
         method: 'POST',
-        body: JSON.stringify({
-          server,
-          model: selectedModel,
-          generateEbay,
-          ...(server === 'Gemini' ? { apiKey } : {})
-        })
+        body: JSON.stringify({ server, model: selectedModel, generateEbay })
       });
       await Promise.all([refreshStatus(), refreshQueue(), refreshResults()]);
     } catch (err) {
@@ -371,13 +361,7 @@ export default function ComicGrader() {
                 onChange={(event) => {
                   const next = event.target.value;
                   setServer(next);
-                  if (next === 'Gemini') {
-                    // Don't auto-fetch — user must enter a key first.
-                    setModels([]);
-                    setSelectedModel('');
-                  } else {
-                    refreshModels(next);
-                  }
+                  refreshModels(next);
                 }}
                 className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 focus:border-indigo-400"
               >
@@ -386,20 +370,6 @@ export default function ComicGrader() {
                 ))}
               </select>
             </div>
-            {server === 'Gemini' && (
-              <div className="space-y-3">
-                <label className="text-xs uppercase text-slate-500">Gemini API Key</label>
-                <input
-                  type="password"
-                  className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 focus:border-indigo-400 focus:outline-none"
-                  value={apiKey}
-                  onChange={(e) => setApiKey(e.target.value)}
-                  placeholder="AIza…"
-                  autoComplete="off"
-                />
-                <p className="text-xs text-slate-500">Enter your key then click <strong>Models</strong> to load the model list.</p>
-              </div>
-            )}
             <div className="space-y-3">
               <label className="text-xs uppercase text-slate-500">Model</label>
               <select

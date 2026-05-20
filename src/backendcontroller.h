@@ -36,10 +36,8 @@ public:
 
     void configureProcessing(ComicProcessor::ServerType serverType,
                              const QString &modelName,
-                             bool generateEbayListing,
-                             const QString &apiKey = {});
+                             bool generateEbayListing);
     void requestModels(ComicProcessor::ServerType serverType,
-                       const QString &apiKey,
                        std::function<void(QStringList)> callback);
 
 public slots:
@@ -68,7 +66,6 @@ private:
     ComicProcessor *m_processor;
     ComicProcessor::ServerType m_serverType;
     QString m_modelName;
-    QString m_apiKey;
 
     mutable QSqlDatabase m_db;
     QHash<int, QStringList> m_cachedModels;

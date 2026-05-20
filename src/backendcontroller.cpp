@@ -420,28 +420,23 @@ QByteArray BackendController::imageById(int id, QString &mimeType) const {
 
 void BackendController::configureProcessing(ComicProcessor::ServerType serverType,
                                             const QString &modelName,
-                                            bool generateEbayListing,
-                                            const QString &apiKey) {
+                                            bool generateEbayListing) {
     m_serverType = serverType;
     m_modelName = modelName;
     m_generateEbay = generateEbayListing;
-    m_apiKey = apiKey;
     m_processor->setServer(serverType);
     m_processor->setModel(modelName);
-    m_processor->setApiKey(apiKey);
 }
 
 void BackendController::requestModels(ComicProcessor::ServerType serverType,
-                                      const QString &apiKey,
                                       std::function<void(QStringList)> callback) {
-    // Don't use the cache for Gemini since the key may change between calls.
+    // Don't use the cache for Gemini since available models may change.
     if (serverType != ComicProcessor::Gemini &&
         m_cachedModels.contains(static_cast<int>(serverType))) {
         callback(m_cachedModels.value(static_cast<int>(serverType)));
         return;
     }
     m_processor->setServer(serverType);
-    m_processor->setApiKey(apiKey);
     m_processor->fetchModels([this, serverType, callback](const QStringList &models) {
         if (serverType != ComicProcessor::Gemini) {
             m_cachedModels.insert(static_cast<int>(serverType), models);
