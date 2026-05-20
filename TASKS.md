@@ -23,7 +23,7 @@ Last updated: 2026-05-20
   `handleProcessQueue` always sends `generateEbay: false`. No toggle exists in the UI, so eBay title generation is permanently disabled from the web frontend.
   _File:_ `frontend/src/ComicGrader.jsx` — add a checkbox; wire its state into the POST body.
 
-- [ ] **B5 — Ollama request format is wrong**
+- [x] **B5 — Ollama request format is wrong**
   Both the `Ollama` and `LMStudio` branches in `sendToAI` build identical JSON (OpenAI messages array). Ollama's native `/api/chat` format differs: it uses `images[]` base64 array + a flat `prompt` string, not `content[{type:image_url}]`.
   _File:_ `src/comicprocessor.cpp` — fix the Ollama branch to use correct Ollama API format.
 
@@ -43,16 +43,16 @@ Last updated: 2026-05-20
 
 ## PRIORITY 1 — eBay Bulk CSV Export (Core Blocker)
 
-- [ ] **P1-A — Implement `EbayCsvExporter` class**
+- [x] **P1-A — Implement `EbayCsvExporter` class**
   Headers: `Action, ItemID, SKU, Title, Description, Category, Price, Quantity, Condition, PictureURL1`
   Quote all fields; escape internal quotes by doubling (`""`). Target: < 10 s for 100 rows.
   _File:_ new `src/ebayexporter.cpp` / `.h`
 
-- [ ] **P1-B — Add `/api/export/csv` endpoint**
+- [x] **P1-B — Add `/api/export/csv` endpoint**
   GET → streams UTF-8 CSV of all comics (or filtered set). Response `Content-Disposition: attachment; filename=comics.csv`.
   _File:_ `src/apiserver.cpp`, `src/backendcontroller.cpp`
 
-- [ ] **P1-C — Add Export button to frontend**
+- [x] **P1-C — Add Export button to frontend**
   Button triggers `GET /api/export/csv` and downloads the file via an `<a href>` blob.
   _File:_ `frontend/src/ComicGrader.jsx`
 

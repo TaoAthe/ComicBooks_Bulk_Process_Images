@@ -19,6 +19,8 @@ add_executable(ComicVisionSorterStage1
     src/imageviewerwidget.h
     src/backendcontroller.cpp
     src/backendcontroller.h
+    src/ebayexporter.cpp
+    src/ebayexporter.h
     src/apiserver.cpp
     src/apiserver.h
     src/serviceapp.cpp

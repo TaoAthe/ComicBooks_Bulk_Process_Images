@@ -214,27 +214,20 @@ void ComicProcessor::sendToAI(const QString &base64Image, std::function<void(con
     }
 
     if (server == Ollama) {
-        QJsonArray messages;
+        // Ollama /api/chat native format: images[] in the message, content is plain text.
+        // Base64 must NOT include the data-URI prefix.
+        QString rawBase64 = base64Image.startsWith("WEBP:") ? base64Image.mid(5) : base64Image;
+        QJsonArray images;
+        images.append(rawBase64);
         QJsonObject message;
         message["role"] = "user";
-        QJsonArray content;
-        QJsonObject textPart;
-        textPart["type"] = "text";
-        textPart["text"] = prompt;
-        content.append(textPart);
-        QJsonObject imagePart;
-        imagePart["type"] = "image_url";
-        QJsonObject imageUrl;
-        QString mime = base64Image.startsWith("WEBP:") ? "data:image/webp;base64," : "data:image/png;base64,";
-        QString actualBase64 = base64Image.startsWith("WEBP:") ? base64Image.mid(5) : base64Image;
-        imageUrl["url"] = mime + actualBase64;
-        imagePart["image_url"] = imageUrl;
-        content.append(imagePart);
-        message["content"] = content;
+        message["content"] = prompt;
+        message["images"] = images;
+        QJsonArray messages;
         messages.append(message);
         json["messages"] = messages;
         json["stream"] = false;
-    } else { // LMStudio
+    } else { // LMStudio / Gemini — OpenAI-compatible format
         QJsonArray messages;
         QJsonObject message;
         message["role"] = "user";

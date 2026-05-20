@@ -23,6 +23,7 @@ public:
     QJsonArray processedComics() const;
     QJsonArray gallery() const;
     QByteArray imageById(int id, QString &mimeType) const;
+    QByteArray exportCsv() const;
     bool deleteComic(int id);
     bool updateComic(int id, const QJsonObject &updates, QStringList &errors);
 

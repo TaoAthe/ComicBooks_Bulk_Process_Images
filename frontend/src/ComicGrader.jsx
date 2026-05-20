@@ -414,9 +414,18 @@ export default function ComicGrader() {
           <div className="bg-slate-800/70 border border-slate-700 rounded-3xl p-6 space-y-4 w-full">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold flex items-center gap-2"><ImageIcon size={20} /> Processed Comics</h2>
-              <button className="text-xs px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-indigo-400" onClick={refreshResults}>
-                <RefreshCw size={14} /> Refresh
-              </button>
+              <div className="flex items-center gap-2">
+                <a
+                  href={`${API_BASE}/api/export/csv`}
+                  download="comics-ebay.csv"
+                  className="text-xs px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-600 border border-emerald-500 flex items-center gap-1"
+                >
+                  <FileText size={14} /> Export CSV
+                </a>
+                <button className="text-xs px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-indigo-400" onClick={refreshResults}>
+                  <RefreshCw size={14} /> Refresh
+                </button>
+              </div>
             </div>
             <div className="rounded-xl border border-slate-700 bg-slate-900/60 max-h-[32rem] overflow-y-auto overflow-x-auto w-full">
               <table className="w-full text-left text-sm">

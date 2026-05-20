@@ -162,6 +162,20 @@ void ApiServer::handleGet(QTcpSocket *socket, const QString &path, const QUrlQue
         respondJson(socket, m_backend->processedComics());
         return;
     }
+    if (path == "/api/export/csv") {
+        QByteArray csv = m_backend->exportCsv();
+        QByteArray response;
+        response.append("HTTP/1.1 200 OK\r\n");
+        sendCorsHeaders(response);
+        response.append("Content-Type: text/csv; charset=utf-8\r\n");
+        response.append("Content-Disposition: attachment; filename=\"comics-ebay.csv\"\r\n");
+        response.append("Content-Length: " + QByteArray::number(csv.size()) + "\r\n");
+        response.append("Connection: close\r\n\r\n");
+        response.append(csv);
+        socket->write(response);
+        socket->disconnectFromHost();
+        return;
+    }
     if (path == "/gallery") {
         respondJson(socket, m_backend->gallery());
         return;

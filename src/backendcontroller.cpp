@@ -1,4 +1,5 @@
 #include "backendcontroller.h"
+#include "ebayexporter.h"
 
 #include <QDir>
 #include <QFileInfo>
@@ -416,6 +417,29 @@ QByteArray BackendController::imageById(int id, QString &mimeType) const {
     QByteArray data = query.value(0).toByteArray();
     mimeType = "image/jpeg";
     return data;
+}
+
+QByteArray BackendController::exportCsv() const {
+    QSqlQuery query(m_db);
+    if (!query.exec("SELECT id, title, issue, publisher, year, condition, value, notes "
+                    "FROM comics ORDER BY id ASC")) {
+        qWarning() << "exportCsv query failed" << query.lastError();
+        return {};
+    }
+    QJsonArray comics;
+    while (query.next()) {
+        QJsonObject obj;
+        obj["id"]        = query.value(0).toInt();
+        obj["title"]     = query.value(1).toString();
+        obj["issue"]     = query.value(2).toString();
+        obj["publisher"] = query.value(3).toString();
+        obj["year"]      = query.value(4).toString();
+        obj["condition"] = query.value(5).toString();
+        obj["value"]     = query.value(6).toString();
+        obj["notes"]     = query.value(7).toString();
+        comics.append(obj);
+    }
+    return EbayCsvExporter::generate(comics);
 }
 
 void BackendController::configureProcessing(ComicProcessor::ServerType serverType,
