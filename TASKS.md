@@ -27,11 +27,11 @@ Last updated: 2026-05-20
   Both the `Ollama` and `LMStudio` branches in `sendToAI` build identical JSON (OpenAI messages array). Ollama's native `/api/chat` format differs: it uses `images[]` base64 array + a flat `prompt` string, not `content[{type:image_url}]`.
   _File:_ `src/comicprocessor.cpp` — fix the Ollama branch to use correct Ollama API format.
 
-- [ ] **B6 — Tests crash (missing Qt DLLs in test output dir)**
+- [x] **B6 — Tests crash (missing Qt DLLs in test output dir)**
   `build_root/tests/Release/` has no Qt6*.dll files → exit code `0xc0000135` on both test executables.
   _File:_ `tests/CMakeLists.txt` — add `add_custom_command` post-build step to run `windeployqt` on each test binary.
 
-- [ ] **B7 — MainWindow compiled but never instantiated**
+- [x] **B7 — MainWindow compiled but never instantiated**
   `main.cpp` only starts `ServiceApp`. `mainwindow.cpp`/`.h` are compiled into the binary but the class is never used. Either wire it back as an optional GUI mode or delete the dead files.
   _File:_ `src/main.cpp`, `src/mainwindow.cpp`, `src/mainwindow.h`
 
@@ -99,17 +99,17 @@ Last updated: 2026-05-20
 
 ## PRIORITY 3 — Frontend Inline Edit / Delete
 
-- [ ] **P3-A — Add inline edit fields to results table**
+- [x] **P3-A — Add inline edit fields to results table**
   Title, Issue, Publisher, Year, Condition, Value are editable; PUT to `/api/comics/update`.
   _File:_ `frontend/src/ComicGrader.jsx`
 
-- [ ] **P3-B — Add Delete button per row**
+- [x] **P3-B — Add Delete button per row**
   DELETE to `/api/comics?id=<id>` then refresh results.
   _File:_ `frontend/src/ComicGrader.jsx`
 
 - [x] **P3-C — Add generateEbay toggle** ← same as B4
 
-- [ ] **P3-D — Image preview in results**
+- [x] **P3-D — Image preview in results**
   Show thumbnail via `/image?id=<id>` endpoint (endpoint already exists in apiserver.cpp).
   _File:_ `frontend/src/ComicGrader.jsx`
 

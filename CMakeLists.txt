@@ -11,12 +11,8 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Network Sql)
 
 add_executable(ComicVisionSorterStage1
     src/main.cpp
-    src/mainwindow.cpp
-    src/mainwindow.h
     src/comicprocessor.cpp
     src/comicprocessor.h
-    src/imageviewerwidget.cpp
-    src/imageviewerwidget.h
     src/backendcontroller.cpp
     src/backendcontroller.h
     src/ebayexporter.cpp

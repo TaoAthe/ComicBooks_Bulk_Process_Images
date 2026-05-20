@@ -12,7 +12,10 @@ import {
   AlertTriangle,
   CheckCircle2,
   ChevronUp,
-  ChevronDown
+  ChevronDown,
+  Pencil,
+  Check,
+  X
 } from 'lucide-react';
 
 const API_BASE = 'http://localhost:5500';
@@ -65,6 +68,8 @@ export default function ComicGrader() {
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
   const [expandedResultId, setExpandedResultId] = useState(null);
+  const [editingId, setEditingId] = useState(null);
+  const [editDraft, setEditDraft] = useState({});
   const [generateEbay, setGenerateEbay] = useState(false);
 
   const refreshContext = async () => {
@@ -203,6 +208,47 @@ export default function ComicGrader() {
 
   const handleToggleResult = (id) => {
     setExpandedResultId((current) => (current === id ? null : id));
+    if (editingId === id) {
+      setEditingId(null);
+      setEditDraft({});
+    }
+  };
+
+  const handleStartEdit = (item) => {
+    setExpandedResultId(item.id);
+    setEditingId(item.id);
+    setEditDraft({
+      title:     item.title     || '',
+      issue:     item.issue     || '',
+      publisher: item.publisher || '',
+      year:      item.year      || '',
+      condition: item.condition || '',
+      value:     item.value     || '',
+      notes:     item.notes     || ''
+    });
+  };
+
+  const handleCancelEdit = () => {
+    setEditingId(null);
+    setEditDraft({});
+  };
+
+  const handleSaveEdit = async (id) => {
+    try {
+      const response = await fetchJson('/api/comics/update', {
+        method: 'POST',
+        body: JSON.stringify({ id, updates: editDraft })
+      });
+      if (response?.errors?.length) {
+        setError(response.errors.join('\n'));
+        return;
+      }
+      setEditingId(null);
+      setEditDraft({});
+      await refreshResults();
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   const handleDeleteResult = async (id) => {
@@ -490,6 +536,14 @@ export default function ComicGrader() {
                               </button>
                               <button
                                 type="button"
+                                onClick={() => handleStartEdit(item)}
+                                className="text-xs px-3 py-1.5 rounded-lg border border-indigo-500/50 text-indigo-300 hover:bg-indigo-500/10 flex items-center gap-1"
+                                title="Edit"
+                              >
+                                <Pencil size={14} />
+                              </button>
+                              <button
+                                type="button"
                                 onClick={() => handleDeleteResult(item.id)}
                                 className="text-xs px-3 py-1.5 rounded-lg border border-red-500/30 text-red-400 hover:bg-red-500/10 flex items-center gap-1"
                                 title="Delete Result"
@@ -499,7 +553,56 @@ export default function ComicGrader() {
                             </div>
                           </td>
                         </tr>
-                        {expanded && (
+                        {expanded && editingId === item.id ? (
+                          <tr className="bg-slate-900/70">
+                            <td colSpan={7} className="px-6 py-4 text-sm">
+                              <div className="flex flex-col gap-4">
+                                <div className="grid gap-3 sm:grid-cols-2">
+                                  {[['title','Title'],['issue','Issue'],['publisher','Publisher'],['year','Year'],['value','Value']].map(([key, label]) => (
+                                    <div key={key} className="space-y-1">
+                                      <label className="text-xs uppercase text-slate-500">{label}</label>
+                                      <input
+                                        className="w-full px-2 py-1.5 text-sm rounded-md bg-slate-800 border border-slate-600 focus:border-indigo-400 focus:outline-none"
+                                        value={editDraft[key] || ''}
+                                        onChange={(e) => setEditDraft((d) => ({ ...d, [key]: e.target.value }))}
+                                      />
+                                    </div>
+                                  ))}
+                                  <div className="space-y-1">
+                                    <label className="text-xs uppercase text-slate-500">Condition</label>
+                                    <select
+                                      className="w-full px-2 py-1.5 text-sm rounded-md bg-slate-800 border border-slate-600 focus:border-indigo-400 focus:outline-none"
+                                      value={editDraft.condition || ''}
+                                      onChange={(e) => setEditDraft((d) => ({ ...d, condition: e.target.value }))}
+                                    >
+                                      <option value="">— select —</option>
+                                      {['Poor','Fair','Good','Very Good','Fine','Very Fine','Near Mint'].map((c) => (
+                                        <option key={c} value={c}>{c}</option>
+                                      ))}
+                                    </select>
+                                  </div>
+                                </div>
+                                <div className="space-y-1">
+                                  <label className="text-xs uppercase text-slate-500">Notes</label>
+                                  <textarea
+                                    rows={3}
+                                    className="w-full px-2 py-1.5 text-sm rounded-md bg-slate-800 border border-slate-600 focus:border-indigo-400 focus:outline-none resize-y"
+                                    value={editDraft.notes || ''}
+                                    onChange={(e) => setEditDraft((d) => ({ ...d, notes: e.target.value }))}
+                                  />
+                                </div>
+                                <div className="flex gap-2 justify-end">
+                                  <button type="button" onClick={handleCancelEdit} className="text-xs px-3 py-1.5 rounded-lg border border-slate-600 hover:border-slate-400 flex items-center gap-1">
+                                    <X size={13} /> Cancel
+                                  </button>
+                                  <button type="button" onClick={() => handleSaveEdit(item.id)} className="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 flex items-center gap-1">
+                                    <Check size={13} /> Save
+                                  </button>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        ) : expanded ? (
                           <tr className="bg-slate-900/60">
                             <td colSpan={7} className="px-6 py-4 text-sm text-slate-200">
                               <div className="flex flex-col gap-3">
@@ -534,7 +637,7 @@ export default function ComicGrader() {
                               </div>
                             </td>
                           </tr>
-                        )}
+                        ) : null}
                       </React.Fragment>
                     );
                   }) : (
