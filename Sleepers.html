@@ -1,0 +1,1968 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Three Undervalued Bronze Age Keys: Strategic Investment Analysis 2026-2027</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1e293b',
+                        'secondary': '#64748b',
+                        'accent': '#dc2626',
+                        'muted': '#f8fafc',
+                        'border': '#e2e8f0',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Prevent horizontal overflow */
+        body {
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(100, 116, 139, 0.85) 100%);
+        }
+        .text-shadow {
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+        .backdrop-blur-cinematic {
+            backdrop-filter: blur(12px);
+        }
+        .cinematic-border {
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(248, 250, 252, 0.98);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid #e2e8f0;
+            z-index: 40;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+        }
+        .content-offset {
+            margin-left: 280px;
+        }
+        .toc-link {
+            transition: all 0.2s ease;
+        }
+        .toc-link:hover {
+            background: rgba(220, 38, 38, 0.1);
+            border-left: 3px solid #dc2626;
+        }
+        .toc-link.active {
+            background: rgba(220, 38, 38, 0.15);
+            border-left: 3px solid #dc2626;
+            color: #dc2626;
+        }
+        .section-divider {
+            background: linear-gradient(90deg, transparent 0%, #e2e8f0 20%, #e2e8f0 80%, transparent 100%);
+            height: 1px;
+            margin: 3rem 0;
+        }
+        .data-highlight {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%);
+            border-left: 4px solid #dc2626;
+        }
+        
+        /* Mermaid chart container styles */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Responsive styles for mermaid controls */
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-white font-sans text-primary leading-relaxed">
+
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed">
+      <div class="mb-8">
+        <h3 class="font-serif font-bold text-lg text-primary mb-4">Table of Contents</h3>
+        <div class="space-y-1">
+          <a href="#hero" class="toc-link block py-2 px-3 text-sm font-medium rounded-md">Executive Summary</a>
+          <a href="#hulk" class="toc-link block py-2 px-3 text-sm font-medium rounded-md">1. Incredible Hulk #182</a>
+          <div class="ml-4 space-y-1">
+            <a href="#hulk-market" class="toc-link block py-1 px-3 text-xs rounded-md">Market Position</a>
+            <a href="#hulk-trajectory" class="toc-link block py-1 px-3 text-xs rounded-md">Price Trajectory</a>
+            <a href="#hulk-strategy" class="toc-link block py-1 px-3 text-xs rounded-md">Acquisition Strategy</a>
+            <a href="#hulk-catalysts" class="toc-link block py-1 px-3 text-xs rounded-md">Flip Catalysts</a>
+          </div>
+          <a href="#superman" class="toc-link block py-2 px-3 text-sm font-medium rounded-md">2. Superman #296</a>
+          <div class="ml-4 space-y-1">
+            <a href="#superman-narrative" class="toc-link block py-1 px-3 text-xs rounded-md">Narrative Significance</a>
+            <a href="#superman-scarcity" class="toc-link block py-1 px-3 text-xs rounded-md">Extreme Scarcity</a>
+            <a href="#superman-advantages" class="toc-link block py-1 px-3 text-xs rounded-md">Raw Acquisition</a>
+            <a href="#superman-catalysts" class="toc-link block py-1 px-3 text-xs rounded-md">Recovery Catalysts</a>
+          </div>
+          <a href="#teamup" class="toc-link block py-2 px-3 text-sm font-medium rounded-md">3. Marvel Team-Up #53</a>
+          <div class="ml-4 space-y-1">
+            <a href="#teamup-content" class="toc-link block py-1 px-3 text-xs rounded-md">Triple-Threat Content</a>
+            <a href="#teamup-mispricing" class="toc-link block py-1 px-3 text-xs rounded-md">Market Mispricing</a>
+            <a href="#teamup-positioning" class="toc-link block py-1 px-3 text-xs rounded-md">VF-NM Positioning</a>
+            <a href="#teamup-catalysts" class="toc-link block py-1 px-3 text-xs rounded-md">X-Men Catalysts</a>
+          </div>
+          <a href="#framework" class="toc-link block py-2 px-3 text-sm font-medium rounded-md">4. Investment Framework</a>
+          <div class="ml-4 space-y-1">
+            <a href="#framework-shared" class="toc-link block py-1 px-3 text-xs rounded-md">Shared Characteristics</a>
+            <a href="#framework-execution" class="toc-link block py-1 px-3 text-xs rounded-md">Execution Strategy</a>
+            <a href="#framework-risk" class="toc-link block py-1 px-3 text-xs rounded-md">Risk Mitigation</a>
+            <a href="#framework-exit" class="toc-link block py-1 px-3 text-xs rounded-md">Exit Considerations</a>
+          </div>
+          <a href="#conclusion" class="toc-link block py-2 px-3 text-sm font-medium rounded-md">Conclusion</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-offset">
+
+      <!-- Hero Section -->
+      <section id="hero" class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 relative overflow-hidden">
+        <div class="absolute inset-0 hero-gradient"></div>
+
+        <!-- Background Visual Elements -->
+        <div class="absolute inset-0 opacity-20">
+          <img src="https://kimi-web-img.moonshot.cn/img/intelligentcollector.com/a25b55425c411ac7faac6c7f7683342d9eb7079b.jpg" alt="Golden Age comic book cover featuring classic superhero artwork" class="w-full h-full object-cover" size="large" aspect="wide" style="photo" query="Golden Age comic book cover" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 py-16">
+          <!-- Bento Grid Layout -->
+          <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8 mb-16">
+
+            <!-- Main Title Block -->
+            <div class="lg:col-span-2 bg-white/10 backdrop-blur-cinematic cinematic-border rounded-2xl p-8">
+              <div class="mb-6">
+                <div class="text-red-400 text-sm font-semibold tracking-wide uppercase mb-2">Strategic Investment Analysis</div>
+                <h1 class="font-serif text-3xl sm:text-4xl lg:text-6xl font-bold text-white text-shadow leading-tight mb-4">
+                  <em class="italic">Three Undervalued</em>
+                  <br/>
+                  Bronze Age Keys
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-200 leading-relaxed text-shadow">
+                  Exceptional 1-2 year flip potential through documented price troughs, strong fundamentals, and clear catalysts for recovery
+                </p>
+              </div>
+
+              <div class="flex flex-wrap gap-3 sm:gap-4">
+                <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                  <span class="text-white font-semibold">Hulk #182</span>
+                  <div class="text-gray-200 text-sm">Wolverine&#39;s Second Cameo</div>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                  <span class="text-white font-semibold">Superman #296</span>
+                  <div class="text-gray-200 text-sm">Extreme Scarcity Sleeper</div>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                  <span class="text-white font-semibold">Marvel Team-Up #53</span>
+                  <div class="text-gray-200 text-sm">Byrne&#39;s First X-Men Art</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="space-y-6">
+              <div class="bg-white/10 backdrop-blur-cinematic cinematic-border rounded-xl p-6">
+                <div class="text-white font-bold text-2xl mb-2">78%</div>
+                <div class="text-gray-200 text-sm">Hulk #182 Peak Decline</div>
+                <div class="text-xs text-gray-300 mt-1">From $950 to $207</div>
+              </div>
+
+              <div class="bg-white/10 backdrop-blur-cinematic cinematic-border rounded-xl p-6">
+                <div class="text-white font-bold text-2xl mb-2">28</div>
+                <div class="text-gray-200 text-sm">Graded Copies Exist</div>
+                <div class="text-xs text-gray-300 mt-1">Superman #296 Scarcity</div>
+              </div>
+
+              <div class="bg-white/10 backdrop-blur-cinematic cinematic-border rounded-xl p-6">
+                <div class="text-white font-bold text-2xl mb-2">&lt;$120</div>
+                <div class="text-gray-200 text-sm">Marvel Team-Up #53</div>
+                <div class="text-xs text-gray-300 mt-1">9.6 Grade in 2024</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Executive Summary -->
+          <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl max-w-4xl mx-auto">
+            <h2 class="font-serif text-2xl font-bold text-primary mb-6">Executive Summary</h2>
+            <div class="prose prose-lg max-w-none text-secondary leading-relaxed">
+              <p class="text-lg font-medium text-primary mb-4">
+                Three Bronze Age comics offer exceptional 1-2 year flip potential through documented price troughs, strong fundamentals, and clear catalysts for recovery.
+              </p>
+
+              <div class="grid md:grid-cols-3 gap-6 my-8">
+                <div class="data-highlight rounded-lg p-4">
+                  <h3 class="font-bold text-primary mb-2">Incredible Hulk #182</h3>
+                  <p class="text-sm text-secondary">Wolverine&#39;s second cameo, down 78% from peak, raw VF-NM target $80-140</p>
+                </div>
+                <div class="data-highlight rounded-lg p-4">
+                  <h3 class="font-bold text-primary mb-2">Superman #296</h3>
+                  <p class="text-sm text-secondary">First &#34;Who Took the Super Out of Superman?&#34;, only 28 graded copies exist, raw copies sub-$100</p>
+                </div>
+                <div class="data-highlight rounded-lg p-4">
+                  <h3 class="font-bold text-primary mb-2">Marvel Team-Up #53</h3>
+                  <p class="text-sm text-secondary">John Byrne&#39;s first X-Men art, triple-threat Spider-Man/Hulk/X-Men content, below $120 for 9.6 graded</p>
+                </div>
+              </div>
+
+              <p class="mt-6">
+                All three titles combine <strong>documented price troughs</strong> from 2021-2022 peak corrections,
+                <strong>strong fundamental significance</strong> in character and creator terms, and
+                <strong>clear catalyst pathways</strong> through MCU integration and collector education trends.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hulk Section -->
+      <section id="hulk" class="py-16 bg-muted">
+        <div class="container mx-auto px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="mb-12">
+              <h2 class="font-serif text-4xl font-bold text-primary mb-4">
+                <span class="text-accent">01.</span> Incredible Hulk #182
+              </h2>
+              <p class="text-xl text-secondary italic font-medium">Wolverine&#39;s Second Cameo in the Trough</p>
+            </div>
+
+            <!-- Market Position -->
+            <div id="hulk-market" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Market Position and Historical Context</h3>
+
+              <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Significance as Wolverine&#39;s Second Cameo</h4>
+                  <p class="text-secondary leading-relaxed mb-4">
+                    Incredible Hulk #182 occupies a distinctive position within the hierarchy of Wolverine key issues,
+                    representing the character&#39;s second cameo appearance following his celebrated debut in Incredible Hulk #181.
+                    Published in 1974, this issue continues the narrative thread established in the landmark #181,
+                    featuring Wolverine in a brief but consequential appearance.
+                  </p>
+                  <p class="text-secondary leading-relaxed">
+                    The issue&#39;s narrative function as connective tissue between introduction and establishment gives it
+                    inherent collectible value that transcends its cameo classification, particularly as the Wolverine
+                    character continues to expand his presence across film, television, and streaming platforms.
+                  </p>
+                </div>
+                <div>
+                  <img src="https://kimi-web-img.moonshot.cn/img/i.ebayimg.com/ac229cfeafc7cbd278ff1c35bd7f7502e0332e24.jpg" alt="Incredible Hulk comic issue 182 featuring Wolverine" class="w-full h-64 object-cover rounded-lg shadow-lg" size="medium" aspect="tall" query="Incredible Hulk 182 comic cover" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                </div>
+              </div>
+
+              <div class="data-highlight rounded-lg p-6 mb-8">
+                <h4 class="font-bold text-lg text-primary mb-4">Perpetual Shadow of Hulk #181</h4>
+                <p class="text-secondary mb-4">
+                  The market dynamics are fundamentally shaped by the overwhelming collector focus on Incredible Hulk #181,
+                  which commands prices an order of magnitude higher. This structural relationship creates a &#34;halo discount&#34;
+                  for #182, where proximity to a genuinely iconic key paradoxically suppresses rather than enhances perceived value.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <div class="text-accent font-bold text-xl">20:1</div>
+                    <div class="text-sm text-secondary">Price Ratio #181:#182</div>
+                    <div class="text-xs text-gray-500">At peak market conditions</div>
+                  </div>
+                  <div class="bg-white rounded-lg p-4">
+                    <div class="text-accent font-bold text-xl">78%</div>
+                    <div class="text-sm text-secondary">Current Discount from Peak</div>
+                    <div class="text-xs text-gray-500">$950 → $207</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price Trajectory -->
+            <div id="hulk-trajectory" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Price Trajectory and Current Opportunity</h3>
+
+              <div class="data-highlight rounded-lg p-6 mb-8">
+                <h4 class="font-bold text-lg text-primary mb-4">Peak-to-Trough Decline Analysis</h4>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                  <div class="text-center">
+                    <div class="text-accent font-bold text-xl">$950</div>
+                    <div class="text-sm text-secondary">Peak (June 2021)</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-accent font-bold text-xl">$207</div>
+                    <div class="text-sm text-secondary">Trough (April 2024)</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-accent font-bold text-xl">78%</div>
+                    <div class="text-sm text-secondary">Total Decline</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-accent font-bold text-xl">359%</div>
+                    <div class="text-sm text-secondary">Recovery to Peak</div>
+                  </div>
+                </div>
+                <p class="text-secondary text-sm">
+                  This 78% decline substantially exceeds the broader comic market correction and even the specific Wolverine key subsector performance,
+                  indicating issue-specific deleveraging potentially exacerbated by liquidity constraints.
+                </p>
+              </div>
+
+              <div class="bg-white rounded-lg p-6 shadow-lg mb-8">
+                <h4 class="font-bold text-lg text-primary mb-4">Recent Sales Data</h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th class="px-4 py-3 text-left font-semibold">Grade</th>
+                        <th class="px-4 py-3 text-left font-semibold">Sale Price</th>
+                        <th class="px-4 py-3 text-left font-semibold">Date</th>
+                        <th class="px-4 py-3 text-left font-semibold">Context</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="border-t">
+                        <td class="px-4 py-3 font-medium">9.0</td>
+                        <td class="px-4 py-3 text-accent font-semibold">$207</td>
+                        <td class="px-4 py-3">April 2024</td>
+                        <td class="px-4 py-3 text-secondary">Current Market</td>
+                      </tr>
+                      <tr class="border-t">
+                        <td class="px-4 py-3 font-medium">9.0</td>
+                        <td class="px-4 py-3 text-secondary">$330</td>
+                        <td class="px-4 py-3">March 2024</td>
+                        <td class="px-4 py-3 text-secondary">Prior Month</td>
+                      </tr>
+                      <tr class="border-t">
+                        <td class="px-4 py-3 font-medium">9.0</td>
+                        <td class="px-4 py-3 text-secondary">$950</td>
+                        <td class="px-4 py-3">June 2021</td>
+                        <td class="px-4 py-3 text-secondary">Peak Market</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="mt-4 p-3 bg-blue-50 rounded-lg">
+                  <p class="text-sm text-secondary">
+                    <strong>Source:</strong>
+                    <a href="https://gocollect.com/blog/undervalued-overlooked-bronze-age-comics-may-2024" target="_blank" class="text-blue-600 hover:underline">GoCollect Market Analysis May 2024</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Acquisition Strategy -->
+            <div id="hulk-strategy" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Ungraded VF-NM Acquisition Strategy</h3>
+
+              <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Raw Copy Availability Channels</h4>
+                  <div class="space-y-4">
+                    <div class="border-l-4 border-accent pl-4">
+                      <h5 class="font-semibold text-primary">eBay</h5>
+                      <p class="text-sm text-secondary">Broad selection, transparent pricing</p>
+                      <p class="text-xs text-gray-500">Requires condition verification skills</p>
+                    </div>
+                    <div class="border-l-4 border-accent pl-4">
+                      <h5 class="font-semibold text-primary">Comic Shops</h5>
+                      <p class="text-sm text-secondary">Physical inspection, relationship pricing</p>
+                      <p class="text-xs text-gray-500">Limited inventory, geographic constraints</p>
+                    </div>
+                    <div class="border-l-4 border-accent pl-4">
+                      <h5 class="font-semibold text-primary">Conventions</h5>
+                      <p class="text-sm text-secondary">Comparative shopping, end-of-show deals</p>
+                      <p class="text-xs text-gray-500">Time investment, travel costs</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Condition Assessment Framework</h4>
+                  <div class="bg-white rounded-lg p-4 shadow-lg">
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <div class="font-semibold text-primary mb-2">VF (8.0-8.5)</div>
+                        <ul class="text-secondary space-y-1 text-xs">
+                          <li>• Moderate gloss retention</li>
+                          <li>• 4-6 minor stress lines</li>
+                          <li>• Minor corner blunting</li>
+                          <li>• Off-white to cream pages</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <div class="font-semibold text-primary mb-2">NM (9.0-9.4)</div>
+                        <ul class="text-secondary space-y-1 text-xs">
+                          <li>• Near-original sheen</li>
+                          <li>• 1-3 microscopic lines</li>
+                          <li>• Sharp corner definition</li>
+                          <li>• Off-white to white pages</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="data-highlight rounded-lg p-6">
+                <h4 class="font-bold text-lg text-primary mb-4">Price Targeting Strategy</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="bg-white rounded-lg p-4 text-center">
+                    <div class="text-accent font-bold text-xl">$50-75</div>
+                    <div class="text-sm text-secondary">Conservative VF</div>
+                    <div class="text-xs text-gray-500">8.0-8.5 potential</div>
+                  </div>
+                  <div class="bg-white rounded-lg p-4 text-center border-2 border-accent">
+                    <div class="text-accent font-bold text-xl">$80-140</div>
+                    <div class="text-sm text-secondary">Target VF-NM</div>
+                    <div class="text-xs text-gray-500">8.5-9.0 potential</div>
+                  </div>
+                  <div class="bg-white rounded-lg p-4 text-center">
+                    <div class="text-accent font-bold text-xl">$100-150</div>
+                    <div class="text-sm text-secondary">Aggressive NM-</div>
+                    <div class="text-xs text-gray-500">9.2-9.4 potential</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flip Catalysts -->
+            <div id="hulk-catalysts" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">1-2 Year Flip Catalysts</h3>
+
+              <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                  <div class="text-accent text-2xl mb-3"><i class="fas fa-film"></i></div>
+                  <h4 class="font-bold text-primary mb-3">Wolverine MCU Integration</h4>
+                  <p class="text-sm text-secondary mb-3">
+                    Confirmed appearance in Deadpool &amp; Wolverine (July 2024) with $1.3B global theatrical validates character appeal.
+                  </p>
+                  <div class="text-xs text-gray-500">2025-2027 Catalyst Window</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                  <div class="text-accent text-2xl mb-3"><i class="fas fa-chart-line"></i></div>
+                  <h4 class="font-bold text-primary mb-3">Secondary Key Recovery</h4>
+                  <p class="text-sm text-secondary mb-3">
+                    Issues declining 70-80% frequently exceed prior peaks in subsequent cycles as collector composition shifts.
+                  </p>
+                  <div class="text-xs text-gray-500">Historical Precedent Support</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                  <div class="text-accent text-2xl mb-3"><i class="fas fa-users"></i></div>
+                  <h4 class="font-bold text-primary mb-3">Completeness Trend Growth</h4>
+                  <p class="text-sm text-secondary mb-3">
+                    &#34;Completeness&#34; collecting pursuing all significant early appearances benefits Hulk #182 as mandatory companion to #181.
+                  </p>
+                  <div class="text-xs text-gray-500">Registry Program Impact</div>
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border-l-4 border-blue-500">
+                <h4 class="font-bold text-primary mb-4">Catalyst Timeline &amp; Impact Assessment</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center">
+                    <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                    <div>
+                      <div class="font-semibold text-primary">2025 Q2-Q3</div>
+                      <div class="text-sm text-secondary">Standalone Wolverine MCU film speculation intensifies</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-3 h-3 bg-blue-400 rounded-full mr-3"></div>
+                    <div>
+                      <div class="font-semibold text-primary">2026 Q1</div>
+                      <div class="text-sm text-secondary">X-Men in MCU proper announcement potential</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-3 h-3 bg-blue-300 rounded-full mr-3"></div>
+                    <div>
+                      <div class="font-semibold text-primary">2026-2027</div>
+                      <div class="text-sm text-secondary">Anticipatory demand surge pre-release</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Superman Section -->
+      <section id="superman" class="py-16 bg-white">
+        <div class="container mx-auto px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="mb-12">
+              <h2 class="font-serif text-4xl font-bold text-primary mb-4">
+                <span class="text-accent">02.</span> Superman #296
+              </h2>
+              <p class="text-xl text-secondary italic font-medium">&#34;Who Took the Super Out of Superman?&#34; Sleeper</p>
+            </div>
+
+            <!-- Narrative Significance -->
+            <div id="superman-narrative" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Narrative and Historical Significance</h3>
+
+              <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Critically Acclaimed Bronze Age Storyline</h4>
+                  <p class="text-secondary leading-relaxed mb-4">
+                    Superman #296 initiates the celebrated multi-part storyline &#34;Who Took the Super Out of Superman?&#34;
+                    that represents a distinctive high point in Bronze Age Superman publishing. The storyline,
+                    continuing through Superman #297-299, presents a sophisticated exploration of Superman/Clark Kent
+                    identity integration that anticipates later revisionist approaches by decades.
+                  </p>
+                  <p class="text-secondary leading-relaxed mb-4">
+                    Written by Martin Pasko and featuring artwork by definitive Superman artist Curt Swan,
+                    the storyline addresses the psychological toll of Superman&#39;s dual identity maintenance,
+                    with plot mechanics involving red kryptonite exposure that progressively separates the
+                    Superman and Clark Kent personas into distinct entities.
+                  </p>
+                </div>
+                <div>
+                  <img src="https://kimi-web-img.moonshot.cn/img/2.bp.blogspot.com/f45d1904149ad6f99860864f142f718dc7ad05a4" alt="Superman comic issue 296 cover artwork" class="w-full h-64 object-cover rounded-lg shadow-lg" size="medium" aspect="tall" style="photo" query="Superman 296 comic cover" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                </div>
+              </div>
+
+              <div class="data-highlight rounded-lg p-6 mb-8">
+                <h4 class="font-bold text-lg text-primary mb-4">Underappreciated Status in DC Bronze Age Canon</h4>
+                <p class="text-secondary mb-4">
+                  Despite recognized quality and critical acclaim, Superman #296 maintains substantially underappreciated
+                  status within DC Bronze Age collecting hierarchy, with market pricing and collector attention failing
+                  to reflect its objective significance. This underappreciation manifests in multiple dimensions.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Quality Indicators</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Complete narrative resolution</li>
+                      <li>• Sustained critical appreciation</li>
+                      <li>• Swan/Oksner mature artwork</li>
+                      <li>• Influence on subsequent reboots</li>
+                    </ul>
+                  </div>
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Market Position</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Price levels below inferior issues</li>
+                      <li>• Minimal key issue recognition</li>
+                      <li>• Limited collector discussion</li>
+                      <li>• Genuine sleeper status</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Extreme Scarcity -->
+            <div id="superman-scarcity" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Extreme Scarcity and Market Inefficiency</h3>
+
+              <div class="bg-red-50 border-l-4 border-red-500 rounded-lg p-6 mb-8">
+                <h4 class="font-bold text-lg text-primary mb-4">CGC Census: Only 28 Graded Copies Total</h4>
+                <p class="text-secondary mb-4">
+                  The scarcity parameters of Superman #296 are extraordinary even within the context of Bronze Age keys,
+                  with CGC census data revealing <strong>only 28 total graded copies across all grade levels</strong>.
+                  This graded population is among the lowest for any recognized Bronze Age storyline initiator.
+                </p>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                  <div>
+                    <div class="text-accent font-bold text-2xl">28</div>
+                    <div class="text-sm text-secondary">Total Graded</div>
+                  </div>
+                  <div>
+                    <div class="text-accent font-bold text-2xl">5-10</div>
+                    <div class="text-sm text-secondary">High-Grade Estimate</div>
+                  </div>
+                  <div>
+                    <div class="text-accent font-bold text-2xl">&lt;2</div>
+                    <div class="text-sm text-secondary">Annual Grading Rate</div>
+                  </div>
+                </div>
+                <div class="mt-4 p-3 bg-white rounded-lg">
+                  <p class="text-xs text-secondary">
+                    <strong>Source:</strong>
+                    <a href="https://gocollect.com/blog/undervalued-overlooked-bronze-age-comics-may-2024" target="_blank" class="text-blue-600 hover:underline">GoCollect Analysis May 2024</a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-lg p-6 shadow-lg mb-8">
+                <h4 class="font-bold text-lg text-primary mb-4">Recent Sales Analysis</h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th class="px-4 py-3 text-left font-semibold">Grade</th>
+                        <th class="px-4 py-3 text-left font-semibold">Sale Price</th>
+                        <th class="px-4 py-3 text-left font-semibold">Date</th>
+                        <th class="px-4 py-3 text-left font-semibold">Market Context</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="border-t">
+                        <td class="px-4 py-3 font-medium">9.4</td>
+                        <td class="px-4 py-3 text-accent font-semibold">$97</td>
+                        <td class="px-4 py-3">April 2024</td>
+                        <td class="px-4 py-3 text-secondary">Current Trough</td>
+                      </tr>
+                      <tr class="border-t">
+                        <td class="px-4 py-3 font-medium">9.8</td>
+                        <td class="px-4 py-3 text-secondary">$343</td>
+                        <td class="px-4 py-3">September 2021</td>
+                        <td class="px-4 py-3 text-secondary">Peak Market Conditions</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="mt-4 p-4 bg-yellow-50 rounded-lg">
+                  <p class="text-sm text-secondary">
+                    <strong>Market Inefficiency:</strong> The $97 sale for 9.4 grade fails to achieve even nominal recognition
+                    of the issue&#39;s scarcity and narrative importance, representing extraordinary value proposition.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Raw Acquisition Advantages -->
+            <div id="superman-advantages" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Ungraded VF-NM Acquisition Advantages</h3>
+
+              <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Explicit Recommendation for Raw Copy Hunting</h4>
+                  <blockquote class="border-l-4 border-accent pl-4 italic text-secondary mb-4">
+                    &#34;With so few graded copies, it could also be worthwhile hunting down a raw copy in the wild&#34;
+                  </blockquote>
+                  <p class="text-secondary leading-relaxed mb-4">
+                    The GoCollect analysis provides unusual explicit endorsement of ungraded acquisition strategy,
+                    reflecting recognition that the graded market is too thin to serve as primary acquisition channel.
+                  </p>
+                  <div class="bg-blue-50 rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Sourcing Channels</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Estate sales with bulk-priced comics</li>
+                      <li>• Collection purchases from non-specialist sellers</li>
+                      <li>• Non-specialist dealers without key identification</li>
+                      <li>• Online listings with incomplete issue identification</li>
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Visual Appeal of Curt Swan Cover Art</h4>
+                  <p class="text-secondary leading-relaxed mb-4">
+                    The cover artwork presents exceptional visual appeal that enhances raw copy desirability.
+                    The split-image design featuring Superman&#39;s divided identity achieves distinctive graphic
+                    impact that rewards high-grade preservation.
+                  </p>
+                  <div class="bg-white rounded-lg p-4 shadow-lg">
+                    <img src="https://kimi-web-img.moonshot.cn/img/shop.thirdeyecomics.com/0eccf974a5ca859dcc1cb62b169a9fd3c9809abc.jpg" alt="Superman comic book cover artwork" class="w-full h-48 object-cover rounded-lg mb-4" size="medium" aspect="tall" style="photo" query="Superman comic cover" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                    <div class="text-sm text-secondary text-center">Curt Swan&#39;s Definitive Superman Artwork</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="data-highlight rounded-lg p-6">
+                <h4 class="font-bold text-lg text-primary mb-4">Information Asymmetry Advantage</h4>
+                <p class="text-secondary mb-4">
+                  The extreme scarcity of graded copies creates profound information asymmetry that advantages
+                  knowledgeable investors in raw market transactions. With only 28 graded copies, standard
+                  price discovery mechanisms function poorly.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Market Inefficiencies</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Limited transaction volume</li>
+                      <li>• Absence of grade distribution data</li>
+                      <li>• Minimal professional coverage</li>
+                      <li>• Thin auction participation</li>
+                    </ul>
+                  </div>
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Investor Edge</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Identification of mispriced opportunities</li>
+                      <li>• Direct examination building superior knowledge</li>
+                      <li>• Research-based information advantage</li>
+                      <li>• Patient, informed bidding strategy</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recovery Catalysts -->
+            <div id="superman-catalysts" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">1-2 Year Flip Catalysts</h3>
+
+              <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                  <div class="text-accent text-2xl mb-3"><i class="fas fa-rocket"></i></div>
+                  <h4 class="font-bold text-primary mb-3">Superman Media Revitalization</h4>
+                  <p class="text-sm text-secondary mb-3">
+                    James Gunn&#39;s Superman (July 2025) represents major franchise relaunch with potential to elevate
+                    awareness and collector interest in quality Bronze Age content.
+                  </p>
+                  <div class="text-xs text-gray-500">H2 2025 Release Window</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                  <div class="text-accent text-2xl mb-3"><i class="fas fa-book-open"></i></div>
+                  <h4 class="font-bold text-primary mb-3">Complete Story Arc Trend</h4>
+                  <p class="text-sm text-secondary mb-3">
+                    Growing collector interest in complete Bronze Age story arcs benefits multi-part narratives
+                    like &#34;Who Took the Super Out of Superman?&#34; with #296 as essential initiator.
+                  </p>
+                  <div class="text-xs text-gray-500">Collection Bottleneck Effect</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                  <div class="text-accent text-2xl mb-3"><i class="fas fa-trophy"></i></div>
+                  <h4 class="font-bold text-primary mb-3">Key Reclassification</h4>
+                  <p class="text-sm text-secondary mb-3">
+                    Potential for reclassification as &#34;first modern character exploration&#34; based on sophisticated
+                    identity integration themes that influenced subsequent reboots.
+                  </p>
+                  <div class="text-xs text-gray-500">Narrative Innovation Recognition</div>
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border-l-4 border-blue-500">
+                <h4 class="font-bold text-primary mb-4">Gunn Superman Film Impact Timeline</h4>
+                <div class="space-y-4">
+                  <div class="flex items-start">
+                    <div class="w-3 h-3 bg-blue-500 rounded-full mr-3 mt-2"></div>
+                    <div>
+                      <div class="font-semibold text-primary">July 2025</div>
+                      <div class="text-sm text-secondary">Superman theatrical release - baseline awareness elevation</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <div class="w-3 h-3 bg-blue-400 rounded-full mr-3 mt-2"></div>
+                    <div>
+                      <div class="font-semibold text-primary">H2 2025 - H1 2026</div>
+                      <div class="text-sm text-secondary">Franchise reception period - extended engagement opportunity</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <div class="w-3 h-3 bg-blue-300 rounded-full mr-3 mt-2"></div>
+                    <div>
+                      <div class="font-semibold text-primary">2026-2027</div>
+                      <div class="text-sm text-secondary">Subsequent development announcements - sustained media cycle</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Marvel Team-Up Section -->
+      <section id="teamup" class="py-16 bg-muted">
+        <div class="container mx-auto px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="mb-12">
+              <h2 class="font-serif text-4xl font-bold text-primary mb-4">
+                <span class="text-accent">03.</span> Marvel Team-Up #53
+              </h2>
+              <p class="text-xl text-secondary italic font-medium">Byrne&#39;s First X-Men Hidden Gem</p>
+            </div>
+
+            <!-- Triple-Threat Content -->
+            <div id="teamup-content" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Triple-Threat Content Value</h3>
+
+              <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Spider-Man and Hulk Dual Marvel Icons</h4>
+                  <p class="text-secondary leading-relaxed mb-4">
+                    Marvel Team-Up #53 presents a rare convergence of Marvel&#39;s most commercially powerful characters—
+                    Spider-Man and the Hulk—within a single issue, creating multiple demand channels that support
+                    its fundamental value. The specific pairing represents particularly potent commercial appeal
+                    given both characters&#39; sustained popularity across decades.
+                  </p>
+                  <p class="text-secondary leading-relaxed mb-4">
+                    The 1977 publication timing is significant: both characters had experienced substantial media exposure
+                    that maintained broad public awareness beyond core comic readership, creating conditions for
+                    strong newsstand sales and preservation of copies in consumer hands.
+                  </p>
+                </div>
+                <div>
+                  <img src="https://kimi-web-img.moonshot.cn/img/i.ebayimg.com/f2d28844dab2f9303ead526cf0e4a3591a5cb5a4.jpg" alt="Marvel Team-Up comic book cover featuring Spider-Man and Hulk" class="w-full h-64 object-cover rounded-lg shadow-lg" size="medium" aspect="tall" style="photo" query="Marvel Team-Up comic cover" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                </div>
+              </div>
+
+              <div class="data-highlight rounded-lg p-6 mb-8">
+                <h4 class="font-bold text-lg text-primary mb-4">First X-Men Appearance Drawn by John Byrne (1977)</h4>
+                <p class="text-secondary mb-4">
+                  The specific significance that distinguishes Marvel Team-Up #53 is its status as the
+                  <strong>first appearance of the X-Men drawn by John Byrne</strong>—a creative milestone
+                  that would prove foundational to the franchise&#39;s subsequent development.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Creative Context</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Published months before Uncanny X-Men #108</li>
+                      <li>• Byrne&#39;s first interpretation of X-Men characters</li>
+                      <li>• Full team cameo appearance</li>
+                      <li>• Precedes Claremont-Byrne definitive run</li>
+                    </ul>
+                  </div>
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Market Recognition Gap</h5>
+                    <blockquote class="text-sm text-secondary italic border-l-2 border-accent pl-3">
+                      &#34;The X-Men are what they are because of Claremont and Byrne&#39;s run... Shouldn&#39;t Byrne&#39;s
+                      first work on the characters be more valued by the collecting public?&#34;
+                      <footer class="text-xs text-gray-500 mt-1">— GoCollect Analysis</footer>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Market Mispricing -->
+            <div id="teamup-mispricing" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Market Mispricing and Recovery Potential</h3>
+
+              <div class="bg-red-50 border-l-4 border-red-500 rounded-lg p-6 mb-8">
+                <h4 class="font-bold text-lg text-primary mb-4">Severe Price Correction Analysis</h4>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                  <div class="text-center">
+                    <div class="text-accent font-bold text-xl">$276</div>
+                    <div class="text-sm text-secondary">2021 Peak (9.6)</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-accent font-bold text-xl">&lt;$120</div>
+                    <div class="text-sm text-secondary">Current Trough (9.6)</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-accent font-bold text-xl">&gt;56%</div>
+                    <div class="text-sm text-secondary">Total Decline</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-accent font-bold text-xl">577</div>
+                    <div class="text-sm text-secondary">Total Graded Copies</div>
+                  </div>
+                </div>
+                <div class="bg-white rounded-lg p-4">
+                  <p class="text-sm text-secondary font-medium mb-2">GoCollect Assessment:</p>
+                  <blockquote class="text-sm text-secondary italic">
+                    &#34;The only explanation for the low price is that enough collectors don&#39;t really understand its importance&#34;
+                  </blockquote>
+                  <p class="text-xs text-gray-500 mt-2">
+                    <strong>Source:</strong>
+                    <a href="https://gocollect.com/blog/undervalued-overlooked-comics-3-26-bronze-age" target="_blank" class="text-blue-600 hover:underline">GoCollect Analysis March 2024</a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-lg p-6 shadow-lg mb-8">
+                <h4 class="font-bold text-lg text-primary mb-4">CGC Census Population Analysis</h4>
+                <p class="text-secondary mb-4">
+                  The graded population of 577 copies places Marvel Team-Up #53 in a category of moderate scarcity
+                  that supports value without creating extreme thin-market conditions. This provides sufficient
+                  liquidity for position building and eventual exit without excessive market impact.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-accent font-bold text-xl">~150-200</div>
+                    <div class="text-sm text-secondary">9.0+ Population Estimate</div>
+                  </div>
+                  <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-accent font-bold text-xl">Moderate</div>
+                    <div class="text-sm text-secondary">Annual Grading Rate</div>
+                  </div>
+                  <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-accent font-bold text-xl">Sufficient</div>
+                    <div class="text-sm text-secondary">Price Discovery</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VF-NM Positioning -->
+            <div id="teamup-positioning" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Ungraded VF-NM Positioning</h3>
+
+              <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Raw Copy Discount to Graded Multiples</h4>
+                  <div class="bg-white rounded-lg p-4 shadow-lg">
+                    <div class="space-y-3">
+                      <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <div>
+                          <div class="font-semibold text-primary">9.6 Potential</div>
+                          <div class="text-xs text-secondary">&lt;$120 graded reference</div>
+                        </div>
+                        <div class="text-right">
+                          <div class="text-accent font-bold">$50-75</div>
+                          <div class="text-xs text-secondary">Raw Target</div>
+                        </div>
+                      </div>
+                      <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <div>
+                          <div class="font-semibold text-primary">9.0-9.4 Potential</div>
+                          <div class="text-xs text-secondary">$80-100 estimated</div>
+                        </div>
+                        <div class="text-right">
+                          <div class="text-accent font-bold">$40-60</div>
+                          <div class="text-xs text-secondary">Raw Target</div>
+                        </div>
+                      </div>
+                      <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <div>
+                          <div class="font-semibold text-primary">8.5-9.0 Potential</div>
+                          <div class="text-xs text-secondary">$60-80 estimated</div>
+                        </div>
+                        <div class="text-right">
+                          <div class="text-accent font-bold">$30-45</div>
+                          <div class="text-xs text-secondary">Raw Target</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Collector Education Gap</h4>
+                  <div class="bg-yellow-50 rounded-lg p-4 mb-4">
+                    <h5 class="font-semibold text-primary mb-2">Current Awareness Barriers</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Limited Byrne first-X-Men awareness</li>
+                      <li>• Precursor issue recognition gap</li>
+                      <li>• Triple-threat content underappreciation</li>
+                    </ul>
+                  </div>
+                  <div class="bg-green-50 rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Resolution Pathways</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• X-Men MCU integration education</li>
+                      <li>• Byrne legacy appreciation growth</li>
+                      <li>• &#34;First work on defining run&#34; category expansion</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="data-highlight rounded-lg p-6">
+                <h4 class="font-bold text-lg text-primary mb-4">VF-NM Range Targeting Strategy</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="bg-white rounded-lg p-4 text-center border-2 border-blue-200">
+                    <div class="text-blue-600 font-bold text-xl">$30-45</div>
+                    <div class="text-sm text-secondary">VF (8.0-8.5)</div>
+                    <div class="text-xs text-gray-500">Maximum value orientation</div>
+                  </div>
+                  <div class="bg-white rounded-lg p-4 text-center border-2 border-accent">
+                    <div class="text-accent font-bold text-xl">$50-75</div>
+                    <div class="text-sm text-secondary">VF-NM (8.5-9.0)</div>
+                    <div class="text-xs text-gray-500">Optimal risk-return balance</div>
+                  </div>
+                  <div class="bg-white rounded-lg p-4 text-center border-2 border-green-200">
+                    <div class="text-green-600 font-bold text-xl">$85-120</div>
+                    <div class="text-sm text-secondary">NM- (9.2-9.4)</div>
+                    <div class="text-xs text-gray-500">Premium positioning</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- X-Men Catalysts -->
+            <div id="teamup-catalysts" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">1-2 Year Flip Catalysts</h3>
+
+              <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                  <div class="text-accent text-2xl mb-3"><i class="fas fa-film"></i></div>
+                  <h4 class="font-bold text-primary mb-3">X-Men MCU Integration</h4>
+                  <p class="text-sm text-secondary mb-3">
+                    Anticipated integration of X-Men characters into MCU creates substantial pent-up demand,
+                    with Byrne&#39;s visual interpretation likely influencing MCU aesthetic.
+                  </p>
+                  <div class="text-xs text-gray-500">2026-2027 Catalyst Window</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                  <div class="text-accent text-2xl mb-3"><i class="fas fa-palette"></i></div>
+                  <h4 class="font-bold text-primary mb-3">Artist Legacy Appreciation</h4>
+                  <p class="text-sm text-secondary mb-3">
+                    Evolution toward greater emphasis on creative personnel, with Byrne&#39;s status as definitive
+                    Bronze Age artist driving collector appreciation.
+                  </p>
+                  <div class="text-xs text-gray-500">Artist-Focused Collecting Trend</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                  <div class="text-accent text-2xl mb-3"><i class="fas fa-trophy"></i></div>
+                  <h4 class="font-bold text-primary mb-3">&#34;First Work&#34; Re-rating</h4>
+                  <p class="text-sm text-secondary mb-3">
+                    Historical precedent for issues representing first work on subsequently definitive
+                    creative runs to achieve substantial re-rating as collector sophistication increases.
+                  </p>
+                  <div class="text-xs text-gray-500">Precedent: Miller, Pérez, McFarlane</div>
+                </div>
+              </div>
+
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid">
+                  graph TD
+                  A[&#34;X-Men MCU Announcement
+                  <br/>2025-2026&#34;] --&gt; B[&#34;Anticipatory Demand
+                  <br/>Early Positioning&#34;]
+                  B --&gt; C[&#34;Production/Casting News
+                  <br/>2026-2027&#34;]
+                  C --&gt; D[&#34;Collector Discussion
+                  <br/>Byrne Aesthetic Influence&#34;]
+                  D --&gt; E[&#34;First Byrne X-Men Recognition
+                  <br/>Marvel Team-Up #53&#34;]
+                  E --&gt; F[&#34;Price Appreciation
+                  <br/>Optimal Exit Window&#34;]
+                  G[&#34;Artist-Focused Collecting
+                  <br/>Ongoing Trend&#34;] --&gt; H[&#34;Byrne Legacy Appreciation&#34;]
+                  H --&gt; I[&#34;Complete Byrne Collection Demand&#34;]
+                  I --&gt; E
+                  J[&#34;Historical Precedent
+                  <br/>Miller, Pérez, McFarlane&#34;] --&gt; K[&#34;First Work Re-rating Pattern&#34;]
+                  K --&gt; L[&#34;300-500% Appreciation Potential&#34;]
+                  L --&gt; F
+
+                  style A fill:#e8f4fd,stroke:#1e40af,stroke-width:2px,color:#1e293b
+                  style B fill:#f0f9ff,stroke:#0369a1,stroke-width:2px,color:#1e293b
+                  style C fill:#e8f4fd,stroke:#1e40af,stroke-width:2px,color:#1e293b
+                  style D fill:#f0f9ff,stroke:#0369a1,stroke-width:2px,color:#1e293b
+                  style E fill:#fef3c7,stroke:#d97706,stroke-width:3px,color:#1e293b
+                  style F fill:#dcfce7,stroke:#16a34a,stroke-width:3px,color:#1e293b
+                  style G fill:#f8fafc,stroke:#64748b,stroke-width:1px,color:#1e293b
+                  style H fill:#f0f9ff,stroke:#0369a1,stroke-width:2px,color:#1e293b
+                  style I fill:#f0f9ff,stroke:#0369a1,stroke-width:2px,color:#1e293b
+                  style J fill:#f8fafc,stroke:#64748b,stroke-width:1px,color:#1e293b
+                  style K fill:#f0f9ff,stroke:#0369a1,stroke-width:2px,color:#1e293b
+                  style L fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#1e293b
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6 border-l-4 border-green-500">
+                <h4 class="font-bold text-primary mb-4">Catalyst Convergence &amp; Timing Optimization</h4>
+                <p class="text-secondary mb-4">
+                  The 1-2 year holding period captures the likely window of maximum speculation and anticipation
+                  preceding actual X-Men MCU release, when collector interest typically peaks. Multiple catalyst
+                  pathways provide exit flexibility and reduce timing risk.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Primary Catalyst Path</h5>
+                    <p class="text-sm text-secondary">X-Men MCU integration announcement → production news → anticipatory demand peak</p>
+                  </div>
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Secondary Catalyst Path</h5>
+                    <p class="text-sm text-secondary">Artist-focused collecting trend → Byrne legacy appreciation → first-work recognition</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Investment Framework -->
+      <section id="framework" class="py-16 bg-white">
+        <div class="container mx-auto px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="mb-12">
+              <h2 class="font-serif text-4xl font-bold text-primary mb-4">
+                <span class="text-accent">04.</span> Cross-Cutting Investment Framework
+              </h2>
+              <p class="text-xl text-secondary italic font-medium">Strategic Analysis &amp; Execution Methodology</p>
+            </div>
+
+            <!-- Shared Characteristics -->
+            <div id="framework-shared" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Shared Characteristics of Selected Titles</h3>
+
+              <div class="overflow-x-auto mb-8">
+                <table class="w-full bg-white rounded-lg shadow-lg">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-6 py-4 text-left font-semibold text-primary">Characteristic</th>
+                      <th class="px-6 py-4 text-center font-semibold text-primary">Hulk #182</th>
+                      <th class="px-6 py-4 text-center font-semibold text-primary">Superman #296</th>
+                      <th class="px-6 py-4 text-center font-semibold text-primary">Marvel Team-Up #53</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-t">
+                      <td class="px-6 py-4 font-medium">Documented Price Trough</td>
+                      <td class="px-6 py-4 text-center text-accent font-semibold">78% Decline
+                        <br/><span class="text-xs text-gray-500">$950 → $207</span>
+                      </td>
+                      <td class="px-6 py-4 text-center text-accent font-semibold">Extreme Scarcity
+                        <br/><span class="text-xs text-gray-500">9.4 @ $97</span>
+                      </td>
+                      <td class="px-6 py-4 text-center text-accent font-semibold">&gt;56% Decline
+                        <br/><span class="text-xs text-gray-500">$276 → &lt;$120</span>
+                      </td>
+                    </tr>
+                    <tr class="border-t">
+                      <td class="px-6 py-4 font-medium">Fundamental Significance</td>
+                      <td class="px-6 py-4 text-center text-secondary text-sm">Wolverine second cameo
+                        <br/>Bronze Age key status
+                      </td>
+                      <td class="px-6 py-4 text-center text-secondary text-sm">Acclaimed storyline launch
+                        <br/>Curt Swan definitive art
+                      </td>
+                      <td class="px-6 py-4 text-center text-secondary text-sm">Byrne first X-Men art
+                        <br/>Triple-threat content
+                      </td>
+                    </tr>
+                    <tr class="border-t">
+                      <td class="px-6 py-4 font-medium">Graded Population</td>
+                      <td class="px-6 py-4 text-center text-secondary text-sm">Moderate
+                        <br/><span class="text-xs text-gray-500">(Hulk #181 context)</span>
+                      </td>
+                      <td class="px-6 py-4 text-center text-red-600 font-semibold">Extreme (28)</td>
+                      <td class="px-6 py-4 text-center text-secondary text-sm">Moderate (577)</td>
+                    </tr>
+                    <tr class="border-t">
+                      <td class="px-6 py-4 font-medium">Raw Opportunity</td>
+                      <td class="px-6 py-4 text-center text-secondary text-sm">Established discounts
+                        <br/>VF-NM targeting
+                      </td>
+                      <td class="px-6 py-4 text-center text-secondary text-sm">Extreme information asymmetry
+                        <br/>&#34;Wild hunting&#34; advantage
+                      </td>
+                      <td class="px-6 py-4 text-center text-secondary text-sm">Education gap exploitation
+                        <br/>Multiple value drivers
+                      </td>
+                    </tr>
+                    <tr class="border-t">
+                      <td class="px-6 py-4 font-medium">Primary Catalyst</td>
+                      <td class="px-6 py-4 text-center text-secondary text-sm">Wolverine MCU integration
+                        <br/>Completeness trend
+                      </td>
+                      <td class="px-6 py-4 text-center text-secondary text-sm">Superman media revitalization
+                        <br/>Arc completion demand
+                      </td>
+                      <td class="px-6 py-4 text-center text-secondary text-sm">X-Men MCU integration
+                        <br/>Byrne legacy appreciation
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                <div class="data-highlight rounded-lg p-6">
+                  <h4 class="font-bold text-lg text-primary mb-4">Documented Price Troughs</h4>
+                  <p class="text-secondary text-sm mb-3">
+                    All three titles share demonstrated severe price declines from pandemic-era peaks
+                    (56-78%), creating asymmetric return profiles favorable to strategic entry.
+                  </p>
+                  <div class="text-accent font-bold text-xl">78% Max Decline</div>
+                  <div class="text-xs text-gray-500">Substantially exceeds typical corrections</div>
+                </div>
+
+                <div class="data-highlight rounded-lg p-6">
+                  <h4 class="font-bold text-lg text-primary mb-4">Strong Fundamental Significance</h4>
+                  <p class="text-secondary text-sm mb-3">
+                    Each issue possesses genuine historical, creative, or character significance
+                    that provides durable demand support independent of speculative factors.
+                  </p>
+                  <div class="text-accent font-bold text-xl">3x Character Drivers</div>
+                  <div class="text-xs text-gray-500">Wolverine, Superman, X-Men franchises</div>
+                </div>
+
+                <div class="data-highlight rounded-lg p-6">
+                  <h4 class="font-bold text-lg text-primary mb-4">Graded Population Advantage</h4>
+                  <p class="text-secondary text-sm mb-3">
+                    Graded population characteristics create conditions favoring raw acquisition:
+                    information asymmetry, pricing inefficiency, and grading arbitrage potential.
+                  </p>
+                  <div class="text-accent font-bold text-xl">28-577 Range</div>
+                  <div class="text-xs text-gray-500">From extreme scarcity to moderate liquidity</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Execution Strategy -->
+            <div id="framework-execution" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">VF-NM Ungraded Execution Strategy</h3>
+
+              <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Condition Verification Framework</h4>
+                  <div class="space-y-4">
+                    <div class="border-l-4 border-accent pl-4">
+                      <h5 class="font-semibold text-primary">Personal Assessment Skills</h5>
+                      <p class="text-sm text-secondary">Develop grading education, reference materials, and professional consultation capability</p>
+                    </div>
+                    <div class="border-l-4 border-accent pl-4">
+                      <h5 class="font-semibold text-primary">Pre-Screening Protocol</h5>
+                      <p class="text-sm text-secondary">Professional pre-screening for high-value candidates to avoid grading cost for marginal specimens</p>
+                    </div>
+                    <div class="border-l-4 border-accent pl-4">
+                      <h5 class="font-semibold text-primary">Pressing Identification</h5>
+                      <p class="text-sm text-secondary">Recognition of &#34;pressable&#34; specimens with correctable defects rather than permanent damage</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Liquidity &amp; Grading Arbitrage</h4>
+                  <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                    <h5 class="font-semibold text-primary mb-2">Raw Market Advantages</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Immediate availability for private sale</li>
+                      <li>• Negotiation leverage and flexibility</li>
+                      <li>• Avoidance of grading timeline delays</li>
+                      <li>• Rapid response to market opportunities</li>
+                    </ul>
+                  </div>
+                  <div class="bg-green-50 rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Grading Optionality</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Preserve submission decision for optimal timing</li>
+                      <li>• Capture premium if market recovers</li>
+                      <li>• Avoid cost if market remains stagnant</li>
+                      <li>• Selective grading of highest-confidence specimens</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="data-highlight rounded-lg p-6">
+                <h4 class="font-bold text-lg text-primary mb-4">Multi-Channel Acquisition Strategy</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Primary Channels</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• eBay (saved searches, rapid response)</li>
+                      <li>• Comic shops (relationship building)</li>
+                      <li>• Conventions (systematic scanning)</li>
+                    </ul>
+                  </div>
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Opportunity Channels</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Estate sales (information asymmetry)</li>
+                      <li>• Collection purchases (bulk opportunity)</li>
+                      <li>• Dealer overstock (mispriced inventory)</li>
+                    </ul>
+                  </div>
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Network Channels</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Collector networks (early access)</li>
+                      <li>• Community participation (reputation building)</li>
+                      <li>• Private treaty sales (trusted transactions)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk Mitigation -->
+            <div id="framework-risk" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Risk Mitigation Factors</h3>
+
+              <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                <div class="bg-green-50 rounded-lg p-6 border-l-4 border-green-500">
+                  <h4 class="font-bold text-primary mb-4">Established Key Status</h4>
+                  <p class="text-secondary text-sm mb-3">
+                    All three titles possess recognized key status or equivalent significance that ensures
+                    baseline collector demand even in adverse market conditions.
+                  </p>
+                  <ul class="text-xs text-secondary space-y-1">
+                    <li>• Wolverine&#39;s early appearance sequence</li>
+                    <li>• Acclaimed Superman storyline with definitive artist</li>
+                    <li>• Foundational X-Men creative milestone</li>
+                  </ul>
+                </div>
+
+                <div class="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500">
+                  <h4 class="font-bold text-primary mb-4">Fundamental Value Floor</h4>
+                  <p class="text-secondary text-sm mb-3">
+                    Genuine historical and creative importance provides fundamental value support
+                    that limits impairment risk across market cycles.
+                  </p>
+                  <ul class="text-xs text-secondary space-y-1">
+                    <li>• Character significance durability</li>
+                    <li>• Creator pedigree support</li>
+                    <li>• Narrative innovation recognition</li>
+                  </ul>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-6 border-l-4 border-purple-500">
+                  <h4 class="font-bold text-primary mb-4">Publisher Diversification</h4>
+                  <p class="text-secondary text-sm mb-3">
+                    Marvel-DC split (2:1) reduces exposure to single-company developments
+                    while maintaining concentration in dominant Marvel ecosystem.
+                  </p>
+                  <ul class="text-xs text-secondary space-y-1">
+                    <li>• Marvel: 2 titles (Hulk, Team-Up)</li>
+                    <li>• DC: 1 title (Superman)</li>
+                    <li>• Multiple character franchises</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Exit Considerations -->
+            <div id="framework-exit" class="mb-16">
+              <h3 class="font-serif text-2xl font-bold text-primary mb-6">Timing and Exit Considerations</h3>
+
+              <div class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-8 border-l-4 border-indigo-500 mb-8">
+                <h4 class="font-bold text-primary mb-4">12-24 Month Window Alignment with Media Cycles</h4>
+                <p class="text-secondary mb-6">
+                  The specified investment horizon aligns with plausible MCU and DC media development timelines,
+                  with multiple catalyst touchpoints (announcements, production, release windows) providing exit opportunity.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-3">MCU Timeline Integration</h5>
+                    <div class="space-y-2">
+                      <div class="flex items-center">
+                        <div class="w-2 h-2 bg-indigo-500 rounded-full mr-2"></div>
+                        <span class="text-sm text-secondary">2025: X-Men project announcements</span>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-2 h-2 bg-indigo-400 rounded-full mr-2"></div>
+                        <span class="text-sm text-secondary">2026: Production/casting news</span>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-2 h-2 bg-indigo-300 rounded-full mr-2"></div>
+                        <span class="text-sm text-secondary">2027: Release window approach</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-3">DC Media Cycle</h5>
+                    <div class="space-y-2">
+                      <div class="flex items-center">
+                        <div class="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                        <span class="text-sm text-secondary">July 2025: Superman release</span>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                        <span class="text-sm text-secondary">H2 2025-H1 2026: Franchise reception</span>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-2 h-2 bg-blue-300 rounded-full mr-2"></div>
+                        <span class="text-sm text-secondary">2026-2027: Subsequent development</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Monitoring Framework</h4>
+                  <div class="space-y-4">
+                    <div class="border-l-4 border-accent pl-4">
+                      <h5 class="font-semibold text-primary">Graded Sales Momentum</h5>
+                      <p class="text-sm text-secondary">CGC Census tracking, auction result monitoring for leading indicator signals</p>
+                    </div>
+                    <div class="border-l-4 border-accent pl-4">
+                      <h5 class="font-semibold text-primary">Raw Market Liquidity</h5>
+                      <p class="text-sm text-secondary">Dealer inventory levels, listing velocity, competitive bidding patterns</p>
+                    </div>
+                    <div class="border-l-4 border-accent pl-4">
+                      <h5 class="font-semibold text-primary">Entertainment Industry News</h5>
+                      <p class="text-sm text-secondary">Marvel/DC announcements, casting news, production timelines</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg text-primary mb-4">Exit Pathway Flexibility</h4>
+                  <div class="bg-white rounded-lg p-4 shadow-lg">
+                    <div class="space-y-3">
+                      <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                        <div>
+                          <div class="font-semibold text-primary">Raw-to-Raw Flip</div>
+                          <div class="text-xs text-secondary">Speed and liquidity priority</div>
+                        </div>
+                        <div class="text-blue-600"><i class="fas fa-bolt"></i></div>
+                      </div>
+                      <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                        <div>
+                          <div class="font-semibold text-primary">Grade Then Sell</div>
+                          <div class="text-xs text-secondary">Maximum value capture</div>
+                        </div>
+                        <div class="text-green-600"><i class="fas fa-trophy"></i></div>
+                      </div>
+                      <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                        <div>
+                          <div class="font-semibold text-primary">Private Treaty Sale</div>
+                          <div class="text-xs text-secondary">Large positions or thin markets</div>
+                        </div>
+                        <div class="text-purple-600"><i class="fas fa-handshake"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-6">
+                <h4 class="font-bold text-primary mb-4">Personal Horizon Constraint &amp; Opportunity Cost</h4>
+                <p class="text-secondary mb-4">
+                  The 18-24 month maximum holding period ensures disciplined execution regardless of market conditions,
+                  preventing opportunity cost erosion from extended holding patterns. This constraint focuses attention
+                  on highest-probability catalyst timing and maintains portfolio turnover discipline.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Time-Based Exit Triggers</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• 18-month assessment of catalyst progress</li>
+                      <li>• 24-month maximum holding requirement</li>
+                      <li>• Opportunity cost evaluation benchmarks</li>
+                      <li>• Portfolio rebalancing thresholds</li>
+                    </ul>
+                  </div>
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-primary mb-2">Risk Management Integration</h5>
+                    <ul class="text-sm text-secondary space-y-1">
+                      <li>• Prevents emotional holding decisions</li>
+                      <li>• Maintains capital efficiency</li>
+                      <li>• Forces disciplined position sizing</li>
+                      <li>• Enables systematic reinvestment</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Conclusion -->
+      <section id="conclusion" class="py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 text-white">
+        <div class="container mx-auto px-8">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-serif text-4xl font-bold mb-8 text-shadow">Investment Conclusion</h2>
+
+            <div class="grid lg:grid-cols-3 gap-8 mb-12">
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 cinematic-border">
+                <div class="text-accent text-3xl mb-4"><i class="fas fa-chart-line"></i></div>
+                <h3 class="font-serif text-xl font-bold mb-3">Asymmetric Return Profile</h3>
+                <p class="text-gray-200 text-sm">
+                  56-78% documented declines from peak create exceptional risk-reward ratios with
+                  historical precedent for recovery and exceeding prior peaks.
+                </p>
+              </div>
+
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 cinematic-border">
+                <div class="text-accent text-3xl mb-4"><i class="fas fa-shield-alt"></i></div>
+                <h3 class="font-serif text-xl font-bold mb-3">Fundamental Protection</h3>
+                <p class="text-gray-200 text-sm">
+                  Genuine historical significance across three major character franchises provides
+                  durable demand support limiting downside risk.
+                </p>
+              </div>
+
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 cinematic-border">
+                <div class="text-accent text-3xl mb-4"><i class="fas fa-rocket"></i></div>
+                <h3 class="font-serif text-xl font-bold mb-3">Clear Catalyst Pathways</h3>
+                <p class="text-gray-200 text-sm">
+                  MCU integration timelines, artist legacy appreciation, and market efficiency improvements
+                  provide multiple appreciation triggers within 1-2 year horizon.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 cinematic-border">
+              <h3 class="font-serif text-2xl font-bold mb-6">Strategic Recommendation</h3>
+              <p class="text-xl text-gray-200 leading-relaxed mb-6">
+                The convergence of <strong>documented price troughs</strong>, <strong>strong fundamental significance</strong>,
+                and <strong>clear catalyst pathways</strong> across three distinct Bronze Age keys presents an exceptional
+                opportunity for strategic positioning in the 2026-2027 timeframe.
+              </p>
+
+              <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="text-center">
+                  <div class="text-accent font-bold text-2xl mb-2">Hulk #182</div>
+                  <div class="text-gray-300 text-sm">Target: $80-140</div>
+                  <div class="text-gray-400 text-xs">Wolverine&#39;s second cameo, 78% decline</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-accent font-bold text-2xl mb-2">Superman #296</div>
+                  <div class="text-gray-300 text-sm">Target: Sub-$100</div>
+                  <div class="text-gray-400 text-xs">Extreme scarcity, only 28 graded copies</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-accent font-bold text-2xl mb-2">Marvel Team-Up #53</div>
+                  <div class="text-gray-300 text-sm">Target: $50-75</div>
+                  <div class="text-gray-400 text-xs">Byrne&#39;s first X-Men, &gt;56% decline</div>
+                </div>
+              </div>
+
+              <p class="text-lg text-gray-200 leading-relaxed">
+                The ungraded VF-NM acquisition strategy maximizes liquidity, maintains grading arbitrage optionality,
+                and exploits current market inefficiencies while positioning for multiple appreciation catalysts.
+                This approach offers exceptional risk-adjusted returns for disciplined execution within the
+                specified 1-2 year investment horizon.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#f8fafc',
+                primaryTextColor: '#1e293b',
+                primaryBorderColor: '#dc2626',
+                lineColor: '#64748b',
+                secondaryColor: '#e2e8f0',
+                tertiaryColor: '#f1f5f9',
+                background: '#ffffff',
+                mainBkg: '#f8fafc',
+                secondBkg: '#e2e8f0',
+                tertiaryBkg: '#f1f5f9',
+                nodeBorder: '#dc2626',
+                clusterBkg: '#f8fafc',
+                edgeLabelBackground: '#ffffff',
+                nodeTextColor: '#1e293b'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            fontSize: 13,
+            fontFamily: 'Inter, sans-serif'
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize Mermaid controls after mermaid renders
+        setTimeout(() => {
+            initializeMermaidControls();
+        }, 1000);
+
+        // Table of Contents functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('section[id], div[id]');
+            
+            // Add click handlers for smooth scrolling
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Update active section highlighting
+            function updateActiveTocLink() {
+                const scrollPosition = window.scrollY + 100;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        tocLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+            
+            // Throttled scroll event listener
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(updateActiveTocLink, 50);
+            });
+            
+            // Initial call
+            updateActiveTocLink();
+        });
+    </script>
+  
+
+</body></html>
