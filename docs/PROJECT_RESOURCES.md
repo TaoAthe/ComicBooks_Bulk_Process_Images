@@ -5,8 +5,8 @@ This file documents the key configuration details, connection strings, and resou
 ## API Keys & Endpoints
 
 ### Google Gemini API
-
-* **API Key:** `AIzaSyAbWhdCvju5LnIPA4E8j7nO1oLzvn3U_Ko`
+ 
+* **API Key:**  
 * **Base URL:** `https://generativelanguage.googleapis.com`
 * WE ARE USING Gemini 2.5 Pro as default.  Hide other models
 * **Endpoints Used:**
